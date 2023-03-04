@@ -15,3 +15,31 @@ This is a course project.
 
 ### Table Definitions
 
+**Basic architecture and functionalities management**
+
+| Table name      | Table items                                         |
+|-----------------|-----------------------------------------------------|
+| section         | name, discription, pic,                             |
+| role            | id                                                  |
+| medicine        | id, name, effect, cost, discription, picture, video |
+| instrumentation | id, name, discription, picture, video               |
+ | examination     | id, name, cost, discripton, picture, video          |
+
+**User management**
+
+| Table name | Table items              |
+|------------|--------------------------|
+| user       | id, name, password, role |
+
+**Disease case management**
+
+| Table name | Table items                                                          |
+|------------|----------------------------------------------------------------------|
+| case       | disease_name, disease_type, diagnosis, examination, result, solution |
+
+**Testing management**
+
+| Table name | Table items                                  |
+|------------|----------------------------------------------|
+| quiz       | id, duration, questions, students            |
+| question   | id, discription, answer, disease_type, score |
