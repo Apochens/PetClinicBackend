@@ -13,17 +13,36 @@ This is a course project.
 
 ---
 
+## Structure
+
+```text
+PetClinicBackend
+|
+|---case                        For case management
+|
+|---PetClinicBackend            Django main folder
+|
+|---quiz                        For quiz management
+|
+|---user                        For user management
+
+```
+
+
+
+---
+
 ### Table Definitions
 
 **Basic architecture and functionalities management**
 
 | Table name      | Table items                                         |
 |-----------------|-----------------------------------------------------|
-| section         | name, discription, pic,                             |
+| section         | name, description, pic,                             |
 | role            | id                                                  |
-| medicine        | id, name, effect, cost, discription, picture, video |
-| instrumentation | id, name, discription, picture, video               |
- | examination     | id, name, cost, discripton, picture, video          |
+| medicine        | id, name, effect, cost, description, picture, video |
+| instrumentation | id, name, description, picture, video               |
+ | examination     | id, name, cost, description, picture, video         |
 
 **User management**
 
@@ -42,4 +61,7 @@ This is a course project.
 | Table name | Table items                                  |
 |------------|----------------------------------------------|
 | quiz       | id, duration, questions, students            |
-| question   | id, discription, answer, disease_type, score |
+| question   | id, description, answer, disease_type, score |
+
+---
+
