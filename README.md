@@ -4,13 +4,15 @@ This is a course project.
 ---
 
 ## Preparation 
-- Database: MariaDB 10.11.2 (port: 3366, password: 123456, database name: "clinic")
-- PL: Python 3.11
+- Database Server: MariaDB 10.11.2 (port: 3366, password: 123456, database name: "clinic")
+- Programming Language: Python 3.11
 - Backend Framework: Django 4.1.7
 ### Dependencies
-- PyMySQL 1.0.2
-- opencv-python
-- djangorestframework 3.14.0
+
+- For connecting MariaDB: PyMySQL 1.0.2
+- For authentication (REST API)
+  - djangorestframework 3.14.0
+  - djangorestframework-simplejwt 5.2.2
 
 ---
 
@@ -29,7 +31,30 @@ PetClinicBackend
 
 ```
 
+## About Authentication
 
+```python
+# In some_app/views.py
+from rest_framework.views import APIView
+
+class MyView(APIView):
+    
+    def get(self, request):
+        """The response for GET request"""
+        return
+    
+    def post(self, request):
+        """The response for POST request"""
+        return
+
+# In some_app/urls.py
+from django.urls import path
+from . import views
+
+urlpattern = [
+    path('myview', views.MyView.as_view())
+]
+```
 
 ---
 
