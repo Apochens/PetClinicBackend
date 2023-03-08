@@ -4,12 +4,13 @@ This is a course project.
 ---
 
 ## Preparation 
-- Database: MariaDB 10.11.2 (port: 3366, password: 123456, name: "clinic")
+- Database: MariaDB 10.11.2 (port: 3366, password: 123456, database name: "clinic")
 - PL: Python 3.11
 - Backend Framework: Django 4.1.7
 ### Dependencies
 - PyMySQL 1.0.2
 - opencv-python
+- djangorestframework 3.14.0
 
 ---
 
@@ -58,10 +59,10 @@ PetClinicBackend
 
 **Testing management**
 
-| Table name | Table items                                  |
-|------------|----------------------------------------------|
-| quiz       | id, duration, questions, students            |
-| question   | id, description, answer, disease_type, score |
+| Table name             | Table items                                                     |
+|------------------------|-----------------------------------------------------------------|
+| quiz                   | id, duration, questions, students                               |
+| single_choice_question | id, description, option_a, option_b answer, disease_type, score |
 
 ---
 
