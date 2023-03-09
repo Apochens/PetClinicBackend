@@ -31,6 +31,73 @@ PetClinicBackend
 
 ```
 
+---
+
+
+## Interfaces
+
+### Authentication
+
+**/authentication/**
+
+- GET (get user list)
+  - Need auth: yes
+  - Body: None
+  - Return:
+    ```json
+    { 
+      "success": true, 
+      "message": "msg",
+      "list": [
+        {
+          "id": 1,
+          "username": "asd"
+        }
+      ]
+    }
+    ```
+- POST (create a new user)
+  - Need auth: yes
+  - Body
+    ```json
+    { "username": "asd", "password": "123" }
+    ```
+  - Return
+    ```json
+    { "success": true, "message": "msg" }
+    ```
+- PUT (Modify the useranme or password)
+  - Need auth: yes
+  - Body 
+    ```json 
+    { "id": 1, "username": "new_name", "password": "new_pword" }
+    ```
+  - Return
+    ```json
+    { "success": true, "message": "msg" }
+    ```
+- DELETE
+  - Need auth: yes
+  - Body
+    ```json
+    { "id": 1}
+    ```
+  - Return
+    ```json
+    { "success": true, "message": "msg" }
+    ```
+    
+
+| API                     | Need auth? | body                                               | Return                                                             | Detials           |
+|-------------------------|------------|----------------------------------------------------|--------------------------------------------------------------------|-------------------|
+| GET /authentication/    | Yes        | -                                                  | { success: boolean, list: [{username: string, password: string}] } | Get the user list |
+| POST /authentication/   | No         | { username: string, password: string }             |                                                                    | Create a new user |
+| PUT /authentication/    | Yes        | { id: number, username: string, password: string } |                                                                    |                   |
+| DELETE /authentication/ | Yes        | { id: number}                                      |                                                                    |                   |
+
+
+---
+
 ## About Authentication
 
 ```python

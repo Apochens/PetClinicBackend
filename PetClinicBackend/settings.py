@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # For authentication
     'rest_framework',
-    'rest_framework.authtoken',
+    'rest_framework_simplejwt',
     # Project apps
     'quiz.apps.QuizConfig',
     'authentication.apps.AuthenticationConfig',
@@ -142,4 +142,7 @@ import datetime
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=15),  # Expiration time
     'REFRESH_TOKEN_LIFETIME': datetime.timedelta(minutes=15),  # Expiration time
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': SECRET_KEY,
+    'AUTH_HEADER_TYPES': ('Token',),
 }
