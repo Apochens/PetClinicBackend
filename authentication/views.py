@@ -2,29 +2,17 @@ from django.contrib.auth.models import User
 from django.http import JsonResponse
 from rest_framework import status
 from rest_framework.views import APIView
-
-
-def json_response_false(msg: str, additional_data=None):
-    if additional_data is None:
-        additional_data = {}
-    return JsonResponse({"success": False, "message": msg, **additional_data}, status=status.HTTP_400_BAD_REQUEST)
-
-
-def json_response_true(msg: str, additional_data=None):
-    if additional_data is None:
-        additional_data = {}
-    return JsonResponse({"success": True, "message": msg, **additional_data}, status=status.HTTP_200_OK)
+from PetClinicBackend.utils import json_response_true, json_response_false
 
 
 class UserView(APIView):
 
     def get(self, request, *args, **kwargs):
+        """Get the user list"""
         fetch_data = lambda user: {"id": user.id, "username": user.username}
-        user_list = {
-            "success": True,
+        return json_response_true("Fetch all users successfully", {
             "list": list(map(fetch_data, User.objects.all()))
-        }
-        return json_response_true("Fetch all users successfully", user_list)
+        })
 
     def post(self, request, *args, **kwargs):
         """Create a new User"""

@@ -140,8 +140,8 @@ REST_FRAMEWORK = {
 
 import datetime
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=15),  # Expiration time
-    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(minutes=15),  # Expiration time
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(days=1),  # Expiration time
+    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=1),  # Expiration time
     'ALGORITHM': 'HS256',
     'SIGNING_KEY': SECRET_KEY,
     'AUTH_HEADER_TYPES': ('Token',),

@@ -86,15 +86,6 @@ PetClinicBackend
     ```json
     { "success": true, "message": "msg" }
     ```
-    
-
-| API                     | Need auth? | body                                               | Return                                                             | Detials           |
-|-------------------------|------------|----------------------------------------------------|--------------------------------------------------------------------|-------------------|
-| GET /authentication/    | Yes        | -                                                  | { success: boolean, list: [{username: string, password: string}] } | Get the user list |
-| POST /authentication/   | No         | { username: string, password: string }             |                                                                    | Create a new user |
-| PUT /authentication/    | Yes        | { id: number, username: string, password: string } |                                                                    |                   |
-| DELETE /authentication/ | Yes        | { id: number}                                      |                                                                    |                   |
-
 
 ---
 
