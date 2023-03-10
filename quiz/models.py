@@ -1,4 +1,16 @@
+import enum
+from enum import Enum
+
 from django.db import models
+from django.core import validators
+from .validators import JsonFieldValidator
+
+
+class QuestionType(enum.StrEnum):
+    SINGLE = 'single'
+    MULTI = 'multi'
+    TRUEORFALSE = 'tof'
+    TEXT = 'text'
 
 
 class DiseaseType(models.TextChoices):
@@ -24,9 +36,17 @@ class TrueOrFalseAnswerChoice(models.IntegerChoices):
 
 # Create your models here.
 class Quiz(models.Model):
-    duration = models.DurationField()
-    students = models.JSONField()
-    questions = models.JSONField()
+    name = models.CharField(max_length=200, unique=True)
+    duration = models.IntegerField(validators=[
+        validators.MaxValueValidator(120),
+        validators.MinValueValidator(10)
+    ])
+    students = models.JSONField(validators=[
+        JsonFieldValidator('students')
+    ])
+    questions = models.JSONField(validators=[
+        JsonFieldValidator('questions')
+    ])
 
 
 class SingleChoiceQuestion(models.Model):
