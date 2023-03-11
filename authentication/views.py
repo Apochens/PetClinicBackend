@@ -9,9 +9,12 @@ class UserView(APIView):
 
     def get(self, request, *args, **kwargs):
         """Get the user list"""
-        fetch_data = lambda user: {"id": user.id, "username": user.username}
         return json_response_true("Fetch all users successfully", {
-            "list": list(map(fetch_data, User.objects.all()))
+            "users": list(map(lambda user: {
+                "id": user.id,
+                "username": user.username,
+                "superuser": True if user.is_superuser else False
+            }, User.objects.all()))
         })
 
     def post(self, request, *args, **kwargs):
@@ -20,14 +23,19 @@ class UserView(APIView):
         if username is None:
             return json_response_false('No username!')
 
+        if User.objects.filter(username=username).exists():
+            return json_response_false("This user exists already!")
+
         password = request.data.get('password', None)
         if password is None:
             return json_response_false('No password!')
 
-        if User.objects.filter(username=username).exists():
-            return json_response_false("This user exists already!")
+        superuser = request.data.get('superuser', None)
+        if superuser is None or not superuser:
+            User.objects.create_user(username, password=password)
+        else :
+            User.objects.create_superuser(username, password=password)
 
-        User.objects.create_user(username, password=password)
         return json_response_true("Create successfully!")
 
     def put(self, request, *args, **kwargs):
@@ -54,12 +62,8 @@ class UserView(APIView):
         return json_response_true("Modified successfully!")
 
     def delete(self, request, *args, **kwargs):
-        uid = request.data.get('id', None)
-        if uid is None:
-            return json_response_false("No id provided!")
-
-        if User.objects.filter(id=uid).exists():
-            User.objects.get(id=uid).delete()
-
+        users = request.data.get('users', None)
+        if users is not None:
+            User.objects.filter(id__in=users).delete()
         return json_response_true("Deleted successfully!")
 

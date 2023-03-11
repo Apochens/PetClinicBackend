@@ -42,10 +42,10 @@ class Quiz(models.Model):
         validators.MinValueValidator(10)
     ])
     students = models.JSONField(validators=[
-        JsonFieldValidator('students')
+        JsonFieldValidator(['list'])
     ])
     questions = models.JSONField(validators=[
-        JsonFieldValidator('questions')
+        JsonFieldValidator([type for type in QuestionType])
     ])
 
 

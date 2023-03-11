@@ -3,20 +3,43 @@ from pprint import pprint
 
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
+from django.contrib.auth.models import User
 
 from PetClinicBackend.utils import json_response_false, json_response_true
 from . import models, serializers
-from .models import Quiz
 
 
 @api_view(['GET'])
 def get_single_quiz(request, quiz_id):
-    qset = Quiz.objects.filter(id=quiz_id)
+    qset = models.Quiz.objects.filter(id=quiz_id)
     if not qset.exists():
         return json_response_false("No such quiz!")
-    serializer = serializers.QuizSerializer(qset[0])
-    return json_response_true(f"Fetch quiz {quiz_id} successfully", {
-        "data": serializer.data
+    quiz = qset[0]
+    students = User.objects.filter(id__in=quiz.students['list'])
+    single = models.SingleChoiceQuestion.objects.filter(id__in=quiz.questions[models.QuestionType.SINGLE])
+    multi = models.MultiChoiceQuestion.objects.filter(id__in=quiz.questions[models.QuestionType.MULTI])
+    tof = models.TrueOrFalseQuestion.objects.filter(id__in=quiz.questions[models.QuestionType.TRUEORFALSE])
+    text = models.TextQuestion.objects.filter(id__in=quiz.questions[models.QuestionType.TEXT])
+
+    student_ser = serializers.StudentSerializer(students, many=True)
+    single_ser = serializers.SingleChoiceQuestionSerializer(single, many=True)
+    multi_ser = serializers.MultiChoiceQuestionSerializer(multi, many=True)
+    tof_ser = serializers.TrueOrFalseQuestionSerializer(tof, many=True)
+    text_ser = serializers.TextQuestionSerializer(text, many=True)
+
+    return json_response_true(f"Get the details of quiz {quiz_id} successfully!", {
+        "quiz": {
+            "id": quiz.id,
+            "name": quiz.name,
+            "duration": quiz.duration,
+            "students": { "list": student_ser.data},
+            "questions": {
+                models.QuestionType.SINGLE: single_ser.data,
+                models.QuestionType.MULTI: multi_ser.data,
+                models.QuestionType.TRUEORFALSE: tof_ser.data,
+                models.QuestionType.TEXT: text_ser.data,
+            }
+        }
     })
 
 
@@ -28,7 +51,7 @@ class QuizAPIView(APIView):
         serializer = serializers.QuizSerializer(quizs, many=True)
         msg = "Fetch all quizs successfully!"
         return json_response_true(msg, {
-            "list": serializer.data
+            "quizs": serializer.data
         })
 
     def post(self, request):
@@ -38,7 +61,7 @@ class QuizAPIView(APIView):
         try:
             serializer.is_valid(raise_exception=True)
         except Exception as e:
-            return json_response_false("Failed to create a new quiz", e.args[0])
+            return json_response_false("Failed to create a new quiz", {"err": str(e)})
 
         serializer.save()
         msg = "Create a new quiz successfully!"
@@ -50,17 +73,9 @@ class QuizAPIView(APIView):
 
     def delete(self, request):
         """Delete a quiz """
-        quizs = request.data.get('list', None)
+        quizs = request.data.get('quizs', None)
         if quizs is not None:
-
-            try:
-                quiz_list = json.loads(quizs)
-            except Exception as e:
-                return json_response_false(r"Parsing JSON failed: {str(e)}")
-
-            for quiz_id in quiz_list:
-                if Quiz.objects.filter(id=quiz_id).exists():
-                    Quiz.objects.get(pk=quiz_id).delete()
+            models.Quiz.objects.filter(id__in=quizs).delete()
         return json_response_true("Deleted successfully!")
 
 
@@ -71,7 +86,7 @@ def get_single_question(request, question_type, question_id):
         if not query_set.exists():
             return json_response_false(f"No such single choice question {question_id}")
         return json_response_true("Get single choice question", {
-            "data": serializers.SingleChoiceQuestionSerializer(query_set[0]).data
+            "question": serializers.SingleChoiceQuestionSerializer(query_set[0]).data
         })
     if question_type == models.QuestionType.MULTI:
         query_set = models.MultiChoiceQuestion.objects.filter(id=question_id)
@@ -140,7 +155,7 @@ class QuestionAPIView(APIView):
                 ser.is_valid(raise_exception=True)
         except Exception as e:
             pprint(e.args)
-            return json_response_false("Failed to create questions", e.args[0][0])
+            return json_response_false("Failed to create questions", {"err": str(e)})
 
         for ser in sers:
             ser.save()
