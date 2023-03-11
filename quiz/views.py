@@ -1,13 +1,24 @@
+import json
 from pprint import pprint
 
-from django.http import JsonResponse
+from rest_framework.decorators import api_view
 from rest_framework.views import APIView
-from rest_framework import generics
-from . import models, serializers
+
 from PetClinicBackend.utils import json_response_false, json_response_true
+from . import models, serializers
 from .models import Quiz
 
-import json
+
+@api_view(['GET'])
+def get_single_quiz(request, quiz_id):
+    qset = Quiz.objects.filter(id=quiz_id)
+    if not qset.exists():
+        return json_response_false("No such quiz!")
+    serializer = serializers.QuizSerializer(qset[0])
+    return json_response_true(f"Fetch quiz {quiz_id} successfully", {
+        "data": serializer.data
+    })
+
 
 class QuizAPIView(APIView):
 
@@ -53,6 +64,40 @@ class QuizAPIView(APIView):
         return json_response_true("Deleted successfully!")
 
 
+@api_view(['GET'])
+def get_single_question(request, question_type, question_id):
+    pprint(question_type)
+    query_set = None
+    if question_type == models.QuestionType.SINGLE:
+        query_set = models.SingleChoiceQuestion.objects.filter(id=question_id)
+        if not query_set.exists():
+            return json_response_false(f"No such single choice question {question_id}")
+        return json_response_true("Get single choice question", {
+            "data": serializers.SingleChoiceQuestionSerializer(query_set[0]).data
+        })
+    if question_type == models.QuestionType.MULTI:
+        query_set = models.MultiChoiceQuestion.objects.filter(id=question_id)
+        if not query_set.exists():
+            return json_response_false(f"No such multi choice question {question_id}")
+        return json_response_true("Get multi choice question", {
+            "data": serializers.MultiChoiceQuestionSerializer(query_set[0]).data
+        })
+    if question_type == models.QuestionType.TRUEORFALSE:
+        query_set = models.TrueOrFalseQuestion.objects.filter(id=question_id)
+        if not query_set.exists():
+            return json_response_false(f"No such true or false question {question_id}")
+        return json_response_true("Get true or false question", {
+            "data": serializers.TrueOrFalseQuestionSerializer(query_set[0]).data
+        })
+    if question_type == models.QuestionType.TEXT:
+        query_set = models.TextQuestion.objects.filter(id=question_id)
+        if not query_set.exists():
+            return json_response_false(f"No such text question {question_id}")
+        return json_response_true("Get text question", {
+            "data": serializers.TextQuestionSerializer(query_set[0]).data
+        })
+
+
 class QuestionAPIView(APIView):
 
     def get(self, request):
@@ -68,7 +113,6 @@ class QuestionAPIView(APIView):
         })
 
     def get_serializers(self, questions: list[(str, dict)]):
-
         sers = []
         for question_type in models.QuestionType:
             pprint(len(questions))

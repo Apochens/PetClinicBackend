@@ -1,8 +1,8 @@
 import enum
-from enum import Enum
 
-from django.db import models
 from django.core import validators
+from django.db import models
+
 from .validators import JsonFieldValidator
 
 
@@ -50,17 +50,26 @@ class Quiz(models.Model):
 
 
 class SingleChoiceQuestion(models.Model):
+    name = models.CharField(max_length=100)
     description = models.TextField(max_length=1000)
     optionA = models.CharField(max_length=100, verbose_name="Option A")
     optionB = models.CharField(max_length=100, verbose_name="Option B")
     optionC = models.CharField(max_length=100, verbose_name="Option C")
     optionD = models.CharField(max_length=100, verbose_name="Option D")
     answer = models.CharField(max_length=10, choices=AnswerChoice.choices, default=AnswerChoice.A)
-    disease_type = models.CharField(max_length=20, choices=DiseaseType.choices, default=DiseaseType.INTERNAL)
-    score = models.IntegerField(default=5)
+    disease_type = models.CharField(
+        max_length=20,
+        choices=DiseaseType.choices,
+        default=DiseaseType.INTERNAL
+    )
+    score = models.IntegerField(default=5, validators=[
+        validators.MinValueValidator(1),
+        validators.MaxValueValidator(10)
+    ])
 
 
 class MultiChoiceQuestion(models.Model):
+    name = models.CharField(max_length=100)
     description = models.CharField(max_length=1000)
     optionA = models.CharField(max_length=100)
     optionB = models.CharField(max_length=100)
@@ -70,21 +79,45 @@ class MultiChoiceQuestion(models.Model):
     answerB = models.BooleanField(default=False)
     answerC = models.BooleanField(default=False)
     answerD = models.BooleanField(default=False)
-    disease_type = models.CharField(max_length=20, choices=DiseaseType.choices, default=DiseaseType.INTERNAL)
-    score = models.IntegerField(default=5)
+    disease_type = models.CharField(
+        max_length=20,
+        choices=DiseaseType.choices,
+        default=DiseaseType.INTERNAL
+    )
+    score = models.IntegerField(default=5, validators=[
+        validators.MinValueValidator(1),
+        validators.MaxValueValidator(10)
+    ])
 
 
 class TrueOrFalseQuestion(models.Model):
+    name = models.CharField(max_length=100)
     description = models.TextField(max_length=1000)
-    answer = models.CharField(max_length=20,
-                              choices=TrueOrFalseAnswerChoice.choices,
-                              default=TrueOrFalseAnswerChoice.false)
-    disease_type = models.CharField(max_length=20, choices=DiseaseType.choices, default=DiseaseType.INTERNAL)
-    score = models.IntegerField(default=5)
+    answer = models.CharField(
+        max_length=20,
+        choices=TrueOrFalseAnswerChoice.choices,
+        default=TrueOrFalseAnswerChoice.false
+    )
+    disease_type = models.CharField(
+        max_length=20,
+        choices=DiseaseType.choices,
+        default=DiseaseType.INTERNAL
+    )
+    score = models.IntegerField(default=5, validators=[
+        validators.MinValueValidator(1),
+        validators.MaxValueValidator(5)
+    ])
 
 
 class TextQuestion(models.Model):
     description = models.CharField(max_length=500)
     answer = models.TextField(max_length=500)
-    disease_type = models.CharField(max_length=20, choices=DiseaseType.choices, default=DiseaseType.INTERNAL)
-    score = models.IntegerField(default=10)
+    disease_type = models.CharField(
+        max_length=20,
+        choices=DiseaseType.choices,
+        default=DiseaseType.INTERNAL
+    )
+    score = models.IntegerField(default=5, validators=[
+        validators.MinValueValidator(10),
+        validators.MaxValueValidator(20)
+    ])

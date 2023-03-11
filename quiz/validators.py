@@ -1,5 +1,3 @@
-from pprint import pprint
-
 from django.core.exceptions import ValidationError
 from django.utils.deconstruct import deconstructible
 from django.utils.translation import gettext_lazy as _
@@ -23,7 +21,7 @@ class JsonFieldValidator:
                 raise ValidationError(
                     f"Field <{field}> is not a valid field"
                 )
-            if self.category == "questions" and isinstance(value[field], list):
+            if self.category == "questions" and not isinstance(value[field], list):
                 raise ValidationError(
                     f"Field <{field}> is not a list"
                 )
