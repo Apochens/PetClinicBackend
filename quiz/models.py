@@ -110,8 +110,9 @@ class TrueOrFalseQuestion(models.Model):
 
 
 class TextQuestion(models.Model):
-    description = models.CharField(max_length=500)
-    answer = models.TextField(max_length=500)
+    name = models.CharField(max_length=100)
+    description = models.CharField(max_length=1000)
+    answer = models.TextField(max_length=1000)
     disease_type = models.CharField(
         max_length=20,
         choices=DiseaseType.choices,

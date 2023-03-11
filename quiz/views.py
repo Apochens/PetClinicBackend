@@ -66,8 +66,6 @@ class QuizAPIView(APIView):
 
 @api_view(['GET'])
 def get_single_question(request, question_type, question_id):
-    pprint(question_type)
-    query_set = None
     if question_type == models.QuestionType.SINGLE:
         query_set = models.SingleChoiceQuestion.objects.filter(id=question_id)
         if not query_set.exists():
@@ -101,61 +99,48 @@ def get_single_question(request, question_type, question_id):
 class QuestionAPIView(APIView):
 
     def get(self, request):
+        single = models.SingleChoiceQuestion.objects.all()
+        multi = models.MultiChoiceQuestion.objects.all()
+        tof = models.TrueOrFalseQuestion.objects.all()
+        text = models.TrueOrFalseQuestion.objects.all()
+
         return json_response_true("Fetch all questions successfully!", {
             models.QuestionType.SINGLE:
-                serializers.SingleChoiceQuestionSerializer(models.SingleChoiceQuestion.objects.all(), many=True).data,
+                serializers.SingleChoiceQuestionSerializer(single, many=True).data,
             models.QuestionType.MULTI:
-                serializers.MultiChoiceQuestionSerializer(models.MultiChoiceQuestion.objects.all(), many=True).data,
+                serializers.MultiChoiceQuestionSerializer(multi, many=True).data,
             models.QuestionType.TRUEORFALSE:
-                serializers.TrueOrFalseQuestionSerializer(models.TrueOrFalseQuestion.objects.all(), many=True).data,
+                serializers.TrueOrFalseQuestionSerializer(tof, many=True).data,
             models.QuestionType.TEXT:
-                serializers.TrueOrFalseQuestionSerializer(models.TrueOrFalseQuestion.objects.all(), many=True).data,
+                serializers.TrueOrFalseQuestionSerializer(text, many=True).data,
         })
-
-    def get_serializers(self, questions: list[(str, dict)]):
-        sers = []
-        for question_type in models.QuestionType:
-            pprint(len(questions))
-            questions = list(filter(lambda pair: question_type == pair[0], questions))
-            questions = list(map(lambda pair: pair[1], questions))
-            if question_type == models.QuestionType.SINGLE:
-                sers.append(serializers.SingleChoiceQuestionSerializer(data=questions, many=True))
-            if question_type == models.QuestionType.MULTI:
-                sers.append(serializers.MultiChoiceQuestionSerializer(data=questions, many=True))
-            if question_type == models.QuestionType.TRUEORFALSE:
-                sers.append(serializers.TrueOrFalseQuestionSerializer(data=questions, many=True))
-            if question_type == models.QuestionType.TEXT:
-                sers.append(serializers.TextQuestionSerializer(data=questions, many=True))
-
-        return sers
 
     def post(self, request):
         """Create an array of questions"""
-        def get_question(data: dict) -> (str, dict):
-            data = dict(**data)
-            question_type = None
-            if "question_type" in data:
-                question_type = data.pop("question_type")
-            return question_type, data
+        sers = []
 
-        questions: str = request.data.get("questions", None)
-        if questions is None:
-            return json_response_false("No questions provided!")
+        single = request.data.get(models.QuestionType.SINGLE, None)
+        if single is not None:
+            sers.append(serializers.SingleChoiceQuestionSerializer(data=single, many=True))
 
-        try:
-            questions: list = json.loads(questions)
-        except Exception as e:
-            return json_response_false(f"Paring JSON failed: {str(e)}")
+        multi = request.data.get(models.QuestionType.MULTI, None)
+        if multi is not None:
+            sers.append(serializers.MultiChoiceQuestionSerializer(data=multi, many=True))
 
-        questions: list = list(map(get_question, questions))
-        pprint(questions)
-        sers = self.get_serializers(questions)
+        tof = request.data.get(models.QuestionType.TRUEORFALSE, None)
+        if tof is not None:
+            sers.append(serializers.TrueOrFalseQuestionSerializer(data=tof, many=True))
+
+        text = request.data.get(models.QuestionType.TEXT, None)
+        if text is not None:
+            sers.append(serializers.TextQuestionSerializer(data=text, many=True))
 
         try:
             for ser in sers:
                 ser.is_valid(raise_exception=True)
         except Exception as e:
-            return json_response_false("Failed to create questions", e.args[0])
+            pprint(e.args)
+            return json_response_false("Failed to create questions", e.args[0][0])
 
         for ser in sers:
             ser.save()
@@ -165,31 +150,20 @@ class QuestionAPIView(APIView):
     def put(self, request):
         pass
 
-    def query(self, question_type, question_id):
-        if question_type == models.QuestionType.SINGLE:
-            return models.SingleChoiceQuestion.objects.filter(id=question_id)
-        if question_type == models.QuestionType.MULTI:
-            return models.MultiChoiceQuestion.objects.filter(id=question_id)
-        if question_type == models.QuestionType.SINGLE:
-            return models.SingleChoiceQuestion.objects.filter(id=question_id)
-        if question_type == models.QuestionType.SINGLE:
-            return models.SingleChoiceQuestion.objects.filter(id=question_id)
-
     def delete(self, request):
-        delete_set_raw = request.data.get('delete_set', None)
-        if delete_set_raw is None:
-            return json_response_false("No field <delete_set> provided")
 
-        try:
-            delete_set = json.loads(delete_set_raw)
-        except Exception as e:
-            return json_response_false(f"Paring JSON failed: {str(e)}")
+        single = request.data.get(models.QuestionType.SINGLE, None)
+        multi = request.data.get(models.QuestionType.MULTI, None)
+        tof = request.data.get(models.QuestionType.TRUEORFALSE, None)
+        text = request.data.get(models.QuestionType.TEXT, None)
 
-        for question_type in models.QuestionType:
-            if question_type in delete_set.keys():
-                for question_id in delete_set[question_type]:
-                    res = self.query(question_type, question_id)
-                    if res.exists():
-                        res.delete()
+        if single is not None:
+            models.SingleChoiceQuestion.objects.filter(id__in=single).delete()
+        if multi is not None:
+            models.MultiChoiceQuestion.objects.filter(id__in=multi).delete()
+        if tof is not None:
+            models.TrueOrFalseQuestion.objects.filter(id__in=tof).delete()
+        if text is not None:
+            models.TextQuestion.objects.filter(id__in=text).delete()
 
         return json_response_true("Deleted questions successfully!")
