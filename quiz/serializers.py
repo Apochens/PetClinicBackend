@@ -38,3 +38,8 @@ class TrueOrFalseQuestionSerializer(serializers.ModelSerializer):
         model = models.TrueOrFalseQuestion
         fields = "__all__"
 
+
+class QuizResultSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.QuizResult
+        fields = "__all__"

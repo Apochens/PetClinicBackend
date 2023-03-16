@@ -1,9 +1,6 @@
-import json
-from pprint import pprint
-
+from django.contrib.auth.models import User
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
-from django.contrib.auth.models import User
 
 from PetClinicBackend.utils import json_response_false, json_response_true
 from . import models, serializers
@@ -111,6 +108,21 @@ def get_single_question(request, question_type, question_id):
         })
 
 
+# @api_view(['GET'])
+# def get_questions_by_keywords(request, keywords):
+#     pass
+#
+#
+# @api_view(['GET'])
+# def get_questions_by_disease_type(request, disease_type):
+#     return json_response_true("Successfully!", {
+#         models.QuestionType.SINGLE: [],
+#         models.QuestionType.MULTI: [],
+#         models.QuestionType.TRUEORFALSE: [],
+#         models.QuestionType.TEXT: [],
+#     })
+
+
 class QuestionAPIView(APIView):
 
     def get(self, request):
@@ -154,7 +166,6 @@ class QuestionAPIView(APIView):
             for ser in sers:
                 ser.is_valid(raise_exception=True)
         except Exception as e:
-            pprint(e.args)
             return json_response_false("Failed to create questions", {"err": str(e)})
 
         for ser in sers:
@@ -182,3 +193,42 @@ class QuestionAPIView(APIView):
             models.TextQuestion.objects.filter(id__in=text).delete()
 
         return json_response_true("Deleted questions successfully!")
+
+
+@api_view(['GET'])
+def get_quiz_result_by_user(request, user_id):
+    quiz_results = models.QuizResult.objects.filter(user_id=user_id)
+    quiz_result_ser = serializers.QuizResultSerializer(quiz_results, many=True)
+
+    return json_response_true(f'Fetch quiz results of {user_id} successfully!', {
+        "quiz_results": quiz_result_ser.data
+    })
+
+
+@api_view(['GET'])
+def get_quiz_result_by_quiz(request, quiz_id):
+    quiz_results = models.QuizResult.objects.filter(quiz_id=quiz_id)
+    quiz_result_ser = serializers.QuizResultSerializer(quiz_results, many=True)
+
+    return json_response_true(f'Fetch quiz results of {quiz_id} successfully!', {
+        "quiz_results": quiz_result_ser.data
+    })
+
+
+@api_view(['POST'])
+def submit_quiz_result(request):
+    quiz_id = request.data.get('quiz_id', None)
+    user_id = request.data.get('user_id', None)
+    score = request.data.get('score', None)
+
+    quiz = models.Quiz.objects.get(id=quiz_id)
+    user = User.objects.get(id=user_id)
+
+    models.QuizResult.objects.create(
+        quiz=quiz,
+        quiz_name=quiz.name,
+        user=user,
+        user_name=user.username,
+        score=score
+    )
+    return json_response_true("Submit quiz successfully!")

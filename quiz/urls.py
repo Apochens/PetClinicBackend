@@ -3,8 +3,18 @@ from . import views
 
 
 urlpatterns = [
+    # quiz
     path('', views.QuizAPIView.as_view()),
-    path('<int:quiz_id>', views.get_single_quiz),
+    path('<int:quiz_id>/', views.get_single_quiz),
+
+    # question
     path('question/', views.QuestionAPIView.as_view()),
-    path('question/<str:question_type>/<int:question_id>/', views.get_single_question)
+    # path('/question/<str:disease_type>/', views.get_questions_by_disease_type),
+    # path('/question/<str:keywords>/', views.get_questions_by_keywords),
+    path('question/<str:question_type>/<int:question_id>/', views.get_single_question),
+
+    # score
+    path('score/', views.submit_quiz_result),
+    path('score/user/<int:user_id>', views.get_quiz_result_by_user),
+    path('score/quiz/<int:quiz_id>', views.get_quiz_result_by_quiz),
 ]

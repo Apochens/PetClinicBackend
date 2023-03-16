@@ -1,5 +1,6 @@
 import enum
 
+from django.contrib.auth.models import User
 from django.core import validators
 from django.db import models
 
@@ -37,6 +38,7 @@ class TrueOrFalseAnswerChoice(models.IntegerChoices):
 # Create your models here.
 class Quiz(models.Model):
     name = models.CharField(max_length=200, unique=True)
+    description = models.TextField(max_length=1000)
     duration = models.IntegerField(validators=[
         validators.MaxValueValidator(120),
         validators.MinValueValidator(10)
@@ -47,6 +49,14 @@ class Quiz(models.Model):
     questions = models.JSONField(validators=[
         JsonFieldValidator([type for type in QuestionType])
     ])
+
+
+class QuizResult(models.Model):
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+    quiz_name = models.CharField(max_length=100)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_name = models.CharField(max_length=100)
+    score = models.IntegerField()
 
 
 class SingleChoiceQuestion(models.Model):
