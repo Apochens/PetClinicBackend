@@ -120,14 +120,14 @@ urlpattern = [
 
 **Basic architecture and functionalities management**
 
-| Table name              | Table items                                                    |
-|-------------------------|----------------------------------------------------------------|
-| department（科室信息）        | id, name, description, reserved1, reserved2, reserved3         |
-| role（医院中的人员信息）          | id, name, department_name, description, reserved1, reserved2   |
-| medicine（药品，疫苗信息）       | id, name, type, cost, description, reserved1, reserved2        |
-| instrumentation（医院器械信息） | id, name, description, reserved1, reserved2, reserved3         |
- | healthcheck（化验项目信息）     | id, name, cost, description, reserved1, reserved2, reserved3   |
- | hospitalization（住院信息）   | -                                                              |
+| Table name              | Table items                                                   |
+|-------------------------|---------------------------------------------------------------|
+| department（科室信息）        | id, name, description, reserved1, reserved2, reserved3        |
+| medicine（药品，疫苗信息）       | id, name, tag, type, price, description, reserved1, reserved2 |
+| instrumentation（医院器械信息） | id, name, description, reserved1, reserved2, reserved3        |
+ | healthcheck（化验项目信息）     | id, name, price, description, reserved1, reserved2, reserved3 |
+| role（医院中的人员信息）          | id, name, department_name, description, reserved1, reserved2  |
+ | hospitalization（住院信息）   | -                                                             |
 
 **User management**
 

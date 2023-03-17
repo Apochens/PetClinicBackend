@@ -7,7 +7,12 @@ class DepartmentSerializer(serializers.ModelSerializer):
         model = models.Department
         fields = "__all__"
 
-class RoleSerializer(serializers.ModelSerializer):
+class MedicineSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.Role
+        model = models.Medicine
         fields = "__all__"
+
+# class RoleSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = models.Role
+#         fields = "__all__"
