@@ -137,9 +137,11 @@ urlpattern = [
 
 **Disease case management**
 
-| Table name | Table items                                                          |
-|------------|----------------------------------------------------------------------|
-| case       | disease_name, disease_type, diagnosis, examination, result, solution |
+| Table name                 | Table items                                                          |
+|------------------------------|----------------------------------------------------------------------|
+| case(基本信息)              | id, case_number(unique), disease_type, disease_name, pet_name, pet_species, pet_age, owner_name, owner_phone, symptom, diagnosis_result, treatment |
+| checkup(检查信息)           | id, case_number, checkup_item, checkup_result |
+| category(导航分类信息)      | id, key, title, children |
 
 **Testing management**
 
