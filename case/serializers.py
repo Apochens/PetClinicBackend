@@ -5,10 +5,16 @@ from . import models
 class CaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Case
-        fields = "__all__"
+        exclude = ["id"]
 
 
 class CheckupSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Checkup
-        fields = "__all__"
+        exclude = ["id"]
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Category
+        exclude = ["id"]
