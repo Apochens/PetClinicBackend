@@ -1,3 +1,4 @@
+from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 
 from PetClinicBackend.utils import json_response_false, json_response_true
@@ -11,7 +12,9 @@ class CaseView(APIView):
         cases = models.Case.objects.all()
         serializer = serializers.CaseSerializer(cases, many=True)
         msg = "Get All Cases successfully!"
-        return json_response_true(msg, {"Cases": serializer.data})
+        return json_response_true(msg, {
+            "cases": serializer.data
+        })
 
     def post(self, request):
         serializer = serializers.CaseSerializer(data=request.data)
@@ -70,3 +73,38 @@ class CategoryView(APIView):
         serializer.save()
         msg = "Insert categories successfully!"
         return json_response_true(msg)
+
+
+@api_view(['GET'])
+def get_single_case_by_number(request, case_number):
+    case = models.Case.objects.filter(case_number=case_number)
+    if not case.exists():
+        return json_response_false("No case with this case number!")
+    msg = "Find case with this case number successfully!"
+    serializer = serializers.CaseSerializer(case[0])
+    return json_response_true(msg, {
+        "case": serializer.data
+    })
+
+
+@api_view(['GET'])
+def get_cases_by_name(request, disease_name):
+    cases = models.Case.objects.filter(disease_name=disease_name)
+    if not cases.exists():
+        return json_response_false("No case with this disease name!")
+    msg = "Find cases with this disease_name successfully!"
+    serializer = serializers.CaseSerializer(cases, many=True)
+    return json_response_true(msg, {
+        "cases": serializer.data
+    })
+
+
+def get_checkups_by_number(request, case_number):
+    checkups = models.Checkup.objects.filter(case_number=case_number)
+    if not checkups.exists():
+        return json_response_false("No checkup with this case number!")
+    msg = "Find checkups with this case number successfully!"
+    serializer = serializers.CheckupSerializer(checkups, many=True)
+    return json_response_true(msg, {
+        "checkups": serializer.data
+    })

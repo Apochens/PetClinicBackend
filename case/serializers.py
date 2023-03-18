@@ -5,13 +5,13 @@ from . import models
 class CaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Case
-        exclude = ["id"]
+        fields = "__all__"
 
 
 class CheckupSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Checkup
-        exclude = ["id"]
+        fields = "__all__"
 
 
 class CategorySerializer(serializers.ModelSerializer):
