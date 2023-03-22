@@ -58,7 +58,6 @@ class CategoryView(APIView):
     def get(self, request):
         categories = models.Category.objects.all()
         serializer = serializers.CategorySerializer(categories, many=True)
-        print(serializer.data)
         msg = "Get all categories successfully!"
         return json_response_true(msg, {
             "case_categories": serializer.data
@@ -99,6 +98,7 @@ def get_cases_by_name(request, disease_name):
     })
 
 
+@api_view(['GET'])
 def get_checkups_by_number(request, case_number):
     checkups = models.Checkup.objects.filter(case_number=case_number)
     if not checkups.exists():
@@ -108,3 +108,20 @@ def get_checkups_by_number(request, case_number):
     return json_response_true(msg, {
         "checkups": serializer.data
     })
+
+
+@api_view(['POST'])
+def test_upload(request):
+    case_number = request.POST.get("case_number", "")
+    checkup_item = request.POST.get("checkup_item", "")
+    checkup_pic = request.FILES.get("checkup_pic", "")
+
+    extend_name = checkup_pic.name[checkup_pic.name.rindex(".") + 1:]
+    allow_ends = ["png", "jpg"]
+    if extend_name not in allow_ends:
+        return json_response_false("Pic format not supported.")
+
+    models.Checkup.objects.create(case_number=case_number,
+                                  checkup_item=checkup_item,
+                                  checkup_pic=checkup_pic)
+    return json_response_true("Insert a checkup with pic successfully.")
