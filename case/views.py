@@ -35,12 +35,29 @@ class CaseView(APIView):
         pass
 
     def delete(self, request):
-        pass
+        # delete one case based on case_number
+        case_number = request.data.get("case_number", None)
+        if case_number is None:
+            return json_response_false("Empty case number, please enter a proper one.")
+        models.Case.objects.filter(case_number=case_number).delete()
+        # delete all the checkups related with this case at the same time
+        models.Checkup.objects.filter(case_number=case_number).delete()
+        msg = "Delete a case successfully."
+        return json_response_true(msg)
 
 
 class CheckView(APIView):
     def get(self, request):
-        pass
+        checks = models.Checkup.objects.all()
+        serializer = serializers.CheckupSerializer(checks, many=True)
+        for record in serializer.data:
+            for key in record.keys():
+                if "pic" in key or "video" in key:
+                    record[key] = settings.WEB_HOST_MEDIA_URL + record[key]
+        msg = "Get All Checkups successfully!"
+        return json_response_true(msg, {
+            "checkups": serializer.data
+        })
 
     def post(self, request):
         serializer = serializers.CheckupSerializer(data=request.data)
@@ -56,7 +73,13 @@ class CheckView(APIView):
         pass
 
     def delete(self, request):
-        pass
+        # delete one checkup based on checkup_id
+        checkup_id = request.data.get("checkup_id", None)
+        if checkup_id is None:
+            return json_response_false("Empty checkup id, please enter a proper one.")
+        models.Checkup.objects.filter(id=checkup_id).delete()
+        msg = "Delete a checkup successfully."
+        return json_response_true(msg)
 
 
 class CategoryView(APIView):
@@ -127,6 +150,7 @@ def get_checkups_by_number(request, case_number):
     })
 
 
+# a test method for uploading files
 @api_view(['POST'])
 def test_upload(request):
     case_number = request.POST.get("case_number", "")
