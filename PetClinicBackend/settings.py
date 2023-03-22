@@ -17,10 +17,15 @@ import authentication.apps
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
- # Path of pictures and videos storage
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-STATIC_PIC_ROOT = os.path.join("E:\ALin", 'test.jpg')
-STATIC_VID_ROOT = os.path.join("E:\ALin", 'test_video.jpg')
+# Path of pictures and videos storage
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+IMAGE_ROOT = os.path.join(MEDIA_ROOT, 'images/')
+VIDEO_ROOT = os.path.join(MEDIA_ROOT, 'videos/')
+STATIC_PIC_ROOT = os.path.join(IMAGE_ROOT, 'test.jpg')
+STATIC_VID_ROOT = os.path.join(VIDEO_ROOT, 'test_video.jpg')
+
+WEB_HOST_MEDIA_URL = os.path.join('http://127.0.0.1:8000')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -32,7 +37,6 @@ SECRET_KEY = 'django-insecure-)v0ble7jiblpktej^-=l2d5z5^j%tu*se_1)i$8@v*7)9h)6y6
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -84,7 +88,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'PetClinicBackend.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -98,7 +101,6 @@ DATABASES = {
         'PASSWORD': '123456'
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -118,7 +120,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -126,7 +127,6 @@ LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'Asia/Shanghai'
 USE_I18N = True
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -140,11 +140,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # For authentication
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated', ),
-    'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework_simplejwt.authentication.JWTAuthentication', )
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
+    'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework_simplejwt.authentication.JWTAuthentication',)
 }
 
 import datetime
+
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': datetime.timedelta(days=1),  # Expiration time
     'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=1),  # Expiration time
