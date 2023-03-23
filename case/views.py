@@ -32,7 +32,13 @@ class CaseView(APIView):
         return json_response_true(msg)
 
     def put(self, request):
-        pass
+        # modify one case
+        old_case = models.Case.objects.filter(case_number=request.data.get("case_number", "")).first()
+        upd = serializers.CaseSerializer(data=request.data, instance=old_case)
+        if upd.is_valid():
+            upd.save()
+            return json_response_true("Successfully modified this case.")
+        return json_response_false("Fail to modify this case.")
 
     def delete(self, request):
         # delete one case based on case_number
@@ -70,7 +76,13 @@ class CheckView(APIView):
         return json_response_true(msg)
 
     def put(self, request):
-        pass
+        # modify one checkup
+        old_checkup = models.Checkup.objects.filter(id=request.data.get("checkup_id", None)).first()
+        upd = serializers.CheckupSerializer(data=request.data, instance=old_checkup)
+        if upd.is_valid():
+            upd.save()
+            return json_response_true("Successfully modified this checkup.")
+        return json_response_false("Fail to modify this checkup.")
 
     def delete(self, request):
         # delete one checkup based on checkup_id
