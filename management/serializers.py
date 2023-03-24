@@ -12,6 +12,16 @@ class MedicineSerializer(serializers.ModelSerializer):
         model = models.Medicine
         fields = "__all__"
 
+class InstrumentationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Instrumentation
+        fields = "__all__"
+
+class CheckupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Checkup
+        fields = "__all__"
+
 # class RoleSerializer(serializers.ModelSerializer):
 #     class Meta:
 #         model = models.Role
