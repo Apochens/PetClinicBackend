@@ -13,6 +13,20 @@ class Medicine(models.Model):
     price = models.IntegerField()
     description = models.TextField(max_length=1000)
 
+class Instrumentation(models.Model):
+    id = models.IntegerField(primary_key=True)
+    dept_id = models.ForeignKey(Department, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
+    description = models.TextField(max_length=1000)
+    method = models.TextField(max_length=1000)
+
+class Checkup(models.Model):
+    id = models.IntegerField(primary_key=True)
+    dept_id = models.ForeignKey(Department, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
+    price = models.IntegerField()
+    description = models.TextField(max_length=1000)
+
 # class Role(models.Model):
 #     id = models.UUIDField(primary_key = True)
 #     name = models.CharField(max_length=200)

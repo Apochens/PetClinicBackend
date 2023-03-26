@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 
 from PetClinicBackend.utils import json_response_false, json_response_true
 from . import models, serializers
+from PetClinicBackend import settings
 
 
 # Create your views here.
@@ -11,6 +12,10 @@ class CaseView(APIView):
     def get(self, request):
         cases = models.Case.objects.all()
         serializer = serializers.CaseSerializer(cases, many=True)
+        for record in serializer.data:
+            for key in record.keys():
+                if "pic" in key or "video" in key:
+                    record[key] = settings.WEB_HOST_MEDIA_URL + record[key]
         msg = "Get All Cases successfully!"
         return json_response_true(msg, {
             "cases": serializer.data
@@ -27,15 +32,38 @@ class CaseView(APIView):
         return json_response_true(msg)
 
     def put(self, request):
-        pass
+        # modify one case
+        old_case = models.Case.objects.filter(case_number=request.data.get("case_number", "")).first()
+        upd = serializers.CaseSerializer(data=request.data, instance=old_case)
+        if upd.is_valid():
+            upd.save()
+            return json_response_true("Successfully modified this case.")
+        return json_response_false("Fail to modify this case.")
 
     def delete(self, request):
-        pass
+        # delete one case based on case_number
+        case_number = request.data.get("case_number", None)
+        if case_number is None:
+            return json_response_false("Empty case number, please enter a proper one.")
+        models.Case.objects.filter(case_number=case_number).delete()
+        # delete all the checkups related with this case at the same time
+        models.Checkup.objects.filter(case_number=case_number).delete()
+        msg = "Delete a case successfully."
+        return json_response_true(msg)
 
 
 class CheckView(APIView):
     def get(self, request):
-        pass
+        checks = models.Checkup.objects.all()
+        serializer = serializers.CheckupSerializer(checks, many=True)
+        for record in serializer.data:
+            for key in record.keys():
+                if "pic" in key or "video" in key:
+                    record[key] = settings.WEB_HOST_MEDIA_URL + record[key]
+        msg = "Get All Checkups successfully!"
+        return json_response_true(msg, {
+            "checkups": serializer.data
+        })
 
     def post(self, request):
         serializer = serializers.CheckupSerializer(data=request.data)
@@ -48,10 +76,22 @@ class CheckView(APIView):
         return json_response_true(msg)
 
     def put(self, request):
-        pass
+        # modify one checkup
+        old_checkup = models.Checkup.objects.filter(id=request.data.get("checkup_id", None)).first()
+        upd = serializers.CheckupSerializer(data=request.data, instance=old_checkup)
+        if upd.is_valid():
+            upd.save()
+            return json_response_true("Successfully modified this checkup.")
+        return json_response_false("Fail to modify this checkup.")
 
     def delete(self, request):
-        pass
+        # delete one checkup based on checkup_id
+        checkup_id = request.data.get("checkup_id", None)
+        if checkup_id is None:
+            return json_response_false("Empty checkup id, please enter a proper one.")
+        models.Checkup.objects.filter(id=checkup_id).delete()
+        msg = "Delete a checkup successfully."
+        return json_response_true(msg)
 
 
 class CategoryView(APIView):
@@ -80,9 +120,13 @@ def get_single_case_by_number(request, case_number):
     if not case.exists():
         return json_response_false("No case with this case number!")
     msg = "Find case with this case number successfully!"
-    serializer = serializers.CaseSerializer(case[0])
+    serializer = serializers.CaseSerializer(case, many=True)
+    for record in serializer.data:
+        for key in record.keys():
+            if "pic" in key or "video" in key:
+                record[key] = settings.WEB_HOST_MEDIA_URL + record[key]
     return json_response_true(msg, {
-        "case": serializer.data
+        "case": serializer.data[0]
     })
 
 
@@ -93,6 +137,10 @@ def get_cases_by_name(request, disease_name):
         return json_response_false("No case with this disease name!")
     msg = "Find cases with this disease_name successfully!"
     serializer = serializers.CaseSerializer(cases, many=True)
+    for record in serializer.data:
+        for key in record.keys():
+            if "pic" in key or "video" in key:
+                record[key] = settings.WEB_HOST_MEDIA_URL + record[key]
     return json_response_true(msg, {
         "cases": serializer.data
     })
@@ -105,23 +153,34 @@ def get_checkups_by_number(request, case_number):
         return json_response_false("No checkup with this case number!")
     msg = "Find checkups with this case number successfully!"
     serializer = serializers.CheckupSerializer(checkups, many=True)
+    for record in serializer.data:
+        for key in record.keys():
+            if "pic" in key or "video" in key:
+                record[key] = settings.WEB_HOST_MEDIA_URL + record[key]
     return json_response_true(msg, {
         "checkups": serializer.data
     })
 
 
+# a test method for uploading files
 @api_view(['POST'])
 def test_upload(request):
     case_number = request.POST.get("case_number", "")
     checkup_item = request.POST.get("checkup_item", "")
-    checkup_pic = request.FILES.get("checkup_pic", "")
 
-    extend_name = checkup_pic.name[checkup_pic.name.rindex(".") + 1:]
+    checkup_pic = request.FILES.get("checkup_pic", "")
+    checkup_video = request.FILES.get("checkup_video", "")
+    pic_extend_name = checkup_pic.name[checkup_pic.name.rindex(".") + 1:]
     allow_ends = ["png", "jpg"]
-    if extend_name not in allow_ends:
+    if pic_extend_name not in allow_ends:
         return json_response_false("Pic format not supported.")
+    video_extend_name = checkup_video.name[checkup_video.name.rindex(".") + 1:]
+    allow_ends2 = ["mp4"]
+    if video_extend_name not in allow_ends2:
+        return json_response_false("Video format not supported.")
 
     models.Checkup.objects.create(case_number=case_number,
                                   checkup_item=checkup_item,
-                                  checkup_pic=checkup_pic)
-    return json_response_true("Insert a checkup with pic successfully.")
+                                  checkup_pic=checkup_pic,
+                                  checkup_video=checkup_video)
+    return json_response_true("Insert a checkup with picture and video successfully.")
