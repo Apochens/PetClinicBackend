@@ -1,0 +1,29 @@
+immunology:
+  - description: 狂犬病是由一种病毒引起的，通过狗等动物的咬伤传播给人类。
+    answer: 1
+    score: 2
+  - description: 狗瘟热是一种常见的病毒感染，会导致狗出现消化道症状和呼吸道症状，需要定期接种疫苗预防。
+    answer: 1
+    score: 2
+  - description: 宠物在接种疫苗后，可以立即进行大量的运动和活动，不会影响免疫效果。
+    answer: 0
+    score: 2
+  - description: 宠物可以随时接种疫苗，无需等待特定的时间点或季节。
+    answer: 0
+    score: 2
+surgery:
+  - description: 领带状切口是狗进行绝育手术时常用的一种手术切口方式。
+    answer: 0
+    score: 2
+  - description: 狗绝育手术可以在任何年龄进行，无需等待特定的时间点或阶段。
+    answer: 0
+    score: 2
+  - description: 宠物绝育手术可以有效降低其患上一些癌症和其他疾病的风险。
+    answer: 1
+    score: 2
+  - description: 皮下异物手术是一种常见的手术方式，适用于宠物皮下存在异物时。
+    answer: 1
+    score: 2
+  - description: 宠物进行手术前需要进行空腹期，通常需要在手术前6-12小时停止饮食。
+    answer: 1
+    score: 2
