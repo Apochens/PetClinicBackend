@@ -39,14 +39,15 @@ class UserView(APIView):
         return json_response_true("Create successfully!")
 
     def put(self, request, *args, **kwargs):
-        id = request.data.get('id', None)
+        """Modify the user information"""
+        uid = request.data.get('id', None)
         if id is None:
             return json_response_false("No id provided!")
 
-        if not User.objects.filter(id=id).exists():
+        if not User.objects.filter(id=uid).exists():
             return json_response_false("No such user!")
 
-        user = User.objects.get(id=id)
+        user = User.objects.get(id=uid)
 
         username = request.data.get('username', None)
         if username is not None:
@@ -58,10 +59,16 @@ class UserView(APIView):
         if password is not None:
             user.set_password(password)
 
+        superuser = request.data.get('superuser', None)
+        if superuser:
+            user.is_superuser = 1 if superuser else 0
+            user.is_staff = 1 if superuser else 0
+
         user.save()
         return json_response_true("Modified successfully!")
 
     def delete(self, request, *args, **kwargs):
+        """Delete one user or a collection of users"""
         users = request.data.get('users', None)
         if users is not None:
             User.objects.filter(id__in=users).delete()

@@ -1,0 +1,32 @@
+infectious:
+  - description: 犬狂犬病的预防措施包括以下哪些？
+    optionA: 定期接种疫苗
+    optionB: 避免宠物接触野生动物
+    optionC: 定期体检
+    optionD: 给宠物食用生肉
+    answerA: True
+    answerB: True
+    answerC: True
+    answerD: False
+    score: 5
+  - description: 猫鼻炎的主要症状包括以下哪些？
+    optionA: 打喷嚏和流鼻涕
+    optionB: 呼吸困难和咳嗽
+    optionC: 消化不良和腹泻
+    optionD: 皮肤瘙痒和脱毛
+    answerA: True
+    answerB: True
+    answerC: False
+    answerD: False
+    score: 5
+  - description: 犬冠状病毒病的预防措施包括以下哪些？
+    optionA: 定期接种疫苗
+    optionB: 避免宠物接触野生动物
+    optionC: 定期体检
+    optionD: 给宠物食用生肉
+    answerA: True
+    answerB: True
+    answerC: True
+    answerD: False
+    score: 5
+obstetric:
