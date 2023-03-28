@@ -13,6 +13,7 @@ class UserView(APIView):
             "users": list(map(lambda user: {
                 "id": user.id,
                 "username": user.username,
+                "password": user.password,
                 "superuser": True if user.is_superuser else False
             }, User.objects.all()))
         })
@@ -33,7 +34,7 @@ class UserView(APIView):
         superuser = request.data.get('superuser', None)
         if superuser is None or not superuser:
             User.objects.create_user(username, password=password)
-        else :
+        else:
             User.objects.create_superuser(username, password=password)
 
         return json_response_true("Create successfully!")

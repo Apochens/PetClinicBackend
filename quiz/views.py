@@ -139,7 +139,7 @@ class QuestionAPIView(APIView):
             models.QuestionType.TRUEORFALSE:
                 serializers.TrueOrFalseQuestionSerializer(tof, many=True).data,
             models.QuestionType.TEXT:
-                serializers.TrueOrFalseQuestionSerializer(text, many=True).data,
+                serializers.TextQuestionSerializer(text, many=True).data,
         })
 
     def post(self, request):
