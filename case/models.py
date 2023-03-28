@@ -16,12 +16,18 @@ class Case(models.Model):
     symptom_text = models.TextField(max_length=1000, default="")
     diagnosis_text = models.TextField(max_length=1000, default="")
     treatment_text = models.TextField(max_length=1000, default="")
-    symptom_pic = models.ImageField(upload_to='images/', default=None)
-    symptom_video = models.FileField(upload_to='videos/', default=settings.STATIC_VID_ROOT)
-    diagnosis_pic = models.ImageField(upload_to='images/', default=settings.STATIC_PIC_ROOT)
-    diagnosis_video = models.FileField(upload_to='videos/', default=settings.STATIC_VID_ROOT)
-    treatment_pic = models.ImageField(upload_to='images/', default=settings.STATIC_PIC_ROOT)
-    treatment_video = models.FileField(upload_to='videos/', default=settings.STATIC_VID_ROOT)
+    symptom_pic1 = models.ImageField(upload_to='images/symptom/', null=True)
+    symptom_pic2 = models.ImageField(upload_to='images/symptom/', null=True)
+    symptom_pic3 = models.ImageField(upload_to='images/symptom/', null=True)
+    diagnosis_pic1 = models.ImageField(upload_to='images/diagnosis/', null=True)
+    diagnosis_pic2 = models.ImageField(upload_to='images/diagnosis/', null=True)
+    diagnosis_pic3 = models.ImageField(upload_to='images/diagnosis/', null=True)
+    treatment_pic1 = models.ImageField(upload_to='images/treatment/', null=True)
+    treatment_pic2 = models.ImageField(upload_to='images/treatment/', null=True)
+    treatment_pic3 = models.ImageField(upload_to='images/treatment/', null=True)
+    symptom_video = models.FileField(upload_to='videos/', null=True)
+    diagnosis_video = models.FileField(upload_to='videos/', null=True)
+    treatment_video = models.FileField(upload_to='videos/', null=True)
 
 
 class Checkup(models.Model):
@@ -29,8 +35,10 @@ class Checkup(models.Model):
     case_number = models.CharField(max_length=100, default="")
     checkup_item = models.CharField(max_length=100, default="")
     checkup_text = models.TextField(max_length=1000, default="")
-    checkup_pic = models.ImageField(upload_to='images/', default=settings.STATIC_PIC_ROOT)
-    checkup_video = models.FileField(upload_to='videos/', default=settings.STATIC_VID_ROOT)
+    checkup_pic1 = models.ImageField(upload_to='images/checkup/', null=True)
+    checkup_pic2 = models.ImageField(upload_to='images/checkup/', null=True)
+    checkup_pic3 = models.ImageField(upload_to='images/checkup/', null=True)
+    checkup_video = models.FileField(upload_to='videos/', null=True)
 
 
 class Category(models.Model):

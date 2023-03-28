@@ -1,0 +1,338 @@
+[
+    {
+        "title": "传染病",
+        "key": "Infectious diseases",
+        "children": [
+            {
+                "title": "犬瘟热",
+                "key": " canine distemper",
+                "children": []
+            },
+            {
+                "title": "犬细小病毒",
+                "key": " canine parvovirus",
+                "children": []
+            },
+            {
+                "title": "犬传染性肝炎",
+                "key": " canine infectious hepatitis",
+                "children": []
+            },
+            {
+                "title": "犬冠状病毒",
+                "key": " canine coronavirus",
+                "children": []
+            },
+            {
+                "title": "猫泛白细胞减少症",
+                "key": " feline panleukopenia",
+                "children": []
+            },
+            {
+                "title": "猫病毒性病气管炎",
+                "key": " feline viral venereal diseases",
+                "children": []
+            },
+            {
+                "title": "皮肤真菌感染",
+                "key": " tracheitis",
+                "children": []
+            }
+        ]
+    },
+    {
+        "title": "寄生虫病",
+        "key": "Parasitic disease",
+        "children": [
+            {
+                "title": "蛔虫病",
+                "key": " ascariasis",
+                "children": []
+            },
+            {
+                "title": "钩虫病",
+                "key": " hookworm disease",
+                "children": []
+            },
+            {
+                "title": "绦虫病",
+                "key": " tapeworm disease",
+                "children": []
+            },
+            {
+                "title": "球虫病",
+                "key": " coccidiosis",
+                "children": []
+            },
+            {
+                "title": "疥螨虫病",
+                "key": " scabies mite disease",
+                "children": []
+            },
+            {
+                "title": "蚤病",
+                "key": " flea disease",
+                "children": []
+            }
+        ]
+    },
+    {
+        "title": "内科",
+        "key": "Internal medicine",
+        "children": [
+            {
+                "title": "口炎",
+                "key": " stomatitis",
+                "children": []
+            },
+            {
+                "title": "肠炎",
+                "key": " enteritis",
+                "children": []
+            },
+            {
+                "title": "肠便秘",
+                "key": " intestinal constipation",
+                "children": []
+            },
+            {
+                "title": "胰腺炎",
+                "key": " pancreatitis",
+                "children": []
+            },
+            {
+                "title": "肝炎",
+                "key": " hepatitis",
+                "children": []
+            },
+            {
+                "title": "腹膜炎",
+                "key": " peritonitis",
+                "children": []
+            },
+            {
+                "title": "肛门腺炎",
+                "key": " anal adenitis",
+                "children": []
+            },
+            {
+                "title": "感冒",
+                "key": " cold",
+                "children": []
+            },
+            {
+                "title": "鼻炎",
+                "key": " rhinitis",
+                "children": []
+            },
+            {
+                "title": "气管支气管炎",
+                "key": " tracheobronchitis",
+                "children": []
+            },
+            {
+                "title": "肺炎",
+                "key": " pneumonia",
+                "children": []
+            },
+            {
+                "title": "心力衰竭",
+                "key": " heart failure",
+                "children": []
+            },
+            {
+                "title": "尿道感染",
+                "key": " urinary tract infection",
+                "children": []
+            },
+            {
+                "title": "尿结石",
+                "key": " urinary calculus",
+                "children": []
+            },
+            {
+                "title": "膀胱炎",
+                "key": " cystitis",
+                "children": []
+            },
+            {
+                "title": "肾炎",
+                "key": " nephritis",
+                "children": []
+            },
+            {
+                "title": "佝偻病",
+                "key": " rickets",
+                "children": []
+            },
+            {
+                "title": "有机磷中毒",
+                "key": " organic phosphorus poisoning",
+                "children": []
+            },
+            {
+                "title": "糖尿病",
+                "key": " diabetes",
+                "children": []
+            },
+            {
+                "title": "耳血肿",
+                "key": " ear hematoma",
+                "children": []
+            },
+            {
+                "title": "中耳炎",
+                "key": " otitis media",
+                "children": []
+            },
+            {
+                "title": "眼睑内翻",
+                "key": " entropion",
+                "children": []
+            },
+            {
+                "title": "结膜炎",
+                "key": " conjunctivitis",
+                "children": []
+            },
+            {
+                "title": "角膜炎",
+                "key": " keratitis",
+                "children": []
+            }
+        ]
+    },
+    {
+        "title": "外产科疾病",
+        "key": "External obstetric diseases",
+        "children": [
+            {
+                "title": "外伤",
+                "key": " trauma",
+                "children": []
+            },
+            {
+                "title": "外科感染",
+                "key": " surgical infection",
+                "children": []
+            },
+            {
+                "title": "骨折",
+                "key": " fractures",
+                "children": []
+            },
+            {
+                "title": "关节脱位",
+                "key": " joint dislocation",
+                "children": []
+            },
+            {
+                "title": "湿疹",
+                "key": " eczema",
+                "children": []
+            },
+            {
+                "title": "皮炎",
+                "key": " dermatitis",
+                "children": []
+            },
+            {
+                "title": "脓皮病",
+                "key": " pyoderma",
+                "children": []
+            },
+            {
+                "title": "脱毛症",
+                "key": " depilation",
+                "children": []
+            },
+            {
+                "title": "趾间囊肿",
+                "key": " interdigital cyst",
+                "children": []
+            },
+            {
+                "title": "疝",
+                "key": " hernia",
+                "children": []
+            },
+            {
+                "title": "阴道炎",
+                "key": " vaginitis",
+                "children": []
+            },
+            {
+                "title": "阴道脱出",
+                "key": " vaginal prolapse",
+                "children": []
+            },
+            {
+                "title": "子宫蓄脓",
+                "key": " uterine pus accumulation",
+                "children": []
+            },
+            {
+                "title": "难产",
+                "key": " dystocia",
+                "children": []
+            },
+            {
+                "title": "乳房炎",
+                "key": " mastitis",
+                "children": []
+            }
+        ]
+    },
+    {
+        "title": "常用手术",
+        "key": "Commonly used surgery",
+        "children": [
+            {
+                "title": "绝育",
+                "key": " sterilization",
+                "children": []
+            },
+            {
+                "title": "剖腹产",
+                "key": " caesarean section",
+                "children": []
+            },
+            {
+                "title": "瞬膜腺增生物切除",
+                "key": " resection of blink gland augmentation",
+                "children": []
+            },
+            {
+                "title": "眼球摘除",
+                "key": " enucleation of the eyeball",
+                "children": []
+            },
+            {
+                "title": "立耳术",
+                "key": " ear erection",
+                "children": []
+            },
+            {
+                "title": "断尾术",
+                "key": " and tail amputation",
+                "children": []
+            }
+        ]
+    },
+    {
+        "title": "免疫",
+        "key": "Immunization",
+        "children": [
+            {
+                "title": "犬免疫程序",
+                "key": " Dog Immunization Program",
+                "children": []
+            },
+            {
+                "title": "猫免疫程序",
+                "key": " Cat Immunization Program",
+                "children": []
+            }
+        ]
+    }
+]

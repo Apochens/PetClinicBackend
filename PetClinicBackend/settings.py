@@ -22,8 +22,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 IMAGE_ROOT = os.path.join(MEDIA_ROOT, 'images/')
 VIDEO_ROOT = os.path.join(MEDIA_ROOT, 'videos/')
-STATIC_PIC_ROOT = os.path.join(IMAGE_ROOT, 'test.jpg')
-STATIC_VID_ROOT = os.path.join(VIDEO_ROOT, 'test_video.jpg')
 
 WEB_HOST_MEDIA_URL = os.path.join('http://127.0.0.1:8000')
 
