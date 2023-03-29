@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'authentication.apps.AuthenticationConfig',
     'case.apps.CaseConfig',
     'management.apps.ManagementConfig',
+    'role.apps.RoleConfig',
 ]
 
 MIDDLEWARE = [

@@ -1,9 +1,49 @@
+from pprint import pprint
+
 from django.contrib.auth.models import User
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 
 from PetClinicBackend.utils import json_response_false, json_response_true
 from . import models, serializers
+
+
+def question_init(request):
+    from yaml import load, FullLoader
+    from pathlib import Path
+
+    def load_yaml(yaml_path):
+        return load(Path(yaml_path).open('r', encoding='utf-8'), Loader=FullLoader)
+
+    def load_questions(yaml_path):
+        dict = load_yaml(yaml_path)
+        questions = []
+        for disease_type in dict:
+            for question in dict[disease_type]:
+                questions.append({
+                    'disease_type': disease_type,
+                    'name': "default",
+                    **question
+                })
+        return questions
+
+    sers = [
+        serializers.SingleChoiceQuestionSerializer(data=load_questions('./data/single.yml'), many=True),
+        serializers.MultiChoiceQuestionSerializer(data=load_questions('./data/multi.yml'), many=True),
+        serializers.TrueOrFalseQuestionSerializer(data=load_questions('./data/tof.yml'), many=True),
+    ]
+
+    try:
+        for ser in sers:
+            ser.is_valid(raise_exception=True)
+    except Exception as e:
+        pprint(e)
+        return json_response_false("Init failed!")
+
+    for ser in sers:
+        ser.save()
+
+    return json_response_true("success")
 
 
 @api_view(['GET'])
