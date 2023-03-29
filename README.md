@@ -13,6 +13,7 @@ This is a course project.
 - For authentication (REST API)
   - djangorestframework 3.14.0
   - djangorestframework-simplejwt 5.2.2
+- For cross domain issue: django-cors-headers
 
 ---
 
@@ -125,9 +126,9 @@ urlpattern = [
 | department（科室信息）         | id, name, description, reserved1, reserved2, reserved3          |
 | medicine（药品，疫苗信息）        | id, name, tag, type, price, description, reserved1, reserved2   |
 | instrumentation（医院器械信息）  | id, dept_id, name, description, reserved1, reserved2, reserved3 |
- | healthcheck（化验项目信息）      | id, name, price, description, reserved1, reserved2, reserved3   |
+| healthcheck（化验项目信息）      | id, name, price, description, reserved1, reserved2, reserved3   |
 | role（医院中的人员信息）           | id, name, department_name, description, reserved1, reserved2    |
- | hospitalization（住院信息）    | -                                                               |
+| hospitalization（住院信息）    | -                                                               |
 
 **User management**
 
