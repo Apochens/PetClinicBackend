@@ -25,9 +25,9 @@ class Case(models.Model):
     treatment_pic1 = models.ImageField(upload_to='images/treatment/', null=True)
     treatment_pic2 = models.ImageField(upload_to='images/treatment/', null=True)
     treatment_pic3 = models.ImageField(upload_to='images/treatment/', null=True)
-    symptom_video = models.FileField(upload_to='videos/', null=True)
-    diagnosis_video = models.FileField(upload_to='videos/', null=True)
-    treatment_video = models.FileField(upload_to='videos/', null=True)
+    symptom_video = models.FileField(upload_to='videos/symptom/', null=True)
+    diagnosis_video = models.FileField(upload_to='videos/diagnosis/', null=True)
+    treatment_video = models.FileField(upload_to='videos/treatment/', null=True)
 
 
 class Checkup(models.Model):
@@ -38,7 +38,7 @@ class Checkup(models.Model):
     checkup_pic1 = models.ImageField(upload_to='images/checkup/', null=True)
     checkup_pic2 = models.ImageField(upload_to='images/checkup/', null=True)
     checkup_pic3 = models.ImageField(upload_to='images/checkup/', null=True)
-    checkup_video = models.FileField(upload_to='videos/', null=True)
+    checkup_video = models.FileField(upload_to='videos/checkup/', null=True)
 
 
 class Category(models.Model):
