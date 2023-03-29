@@ -1,5 +1,4 @@
 from django.db import models
-from PetClinicBackend import settings
 
 
 # Create your models here.

@@ -20,6 +20,12 @@ class CaseView(APIView):
 
     def post(self, request):
         serializer = serializers.CaseSerializer(data=request.data)
+        # check if case_number already used
+        case_number = request.data.get('case_number', None)
+        check_case = models.Case.objects.filter(case_number=case_number.strip())
+        if len(check_case) != 0:
+            return json_response_false("Case number already used, change to another one and try again.")
+
         try:
             serializer.is_valid(raise_exception=True)
         except Exception as e:
@@ -39,13 +45,13 @@ class CaseView(APIView):
 
     def delete(self, request):
         # delete one case based on case_number
-        case_number = request.data.get("case_number", None)
-        if case_number is None:
-            return json_response_false("Empty case number, please enter a proper one.")
-        models.Case.objects.filter(case_number=case_number).delete()
+        case_number_list = request.data.get('case_number_list', None)
+        if case_number_list is None:
+            return json_response_false("Empty case number list, please enter a proper one.")
+        models.Case.objects.filter(case_number__in=case_number_list).delete()
         # delete all the checkups related with this case at the same time
-        models.Checkup.objects.filter(case_number=case_number).delete()
-        msg = "Delete a case successfully."
+        models.Checkup.objects.filter(case_number__in=case_number_list).delete()
+        msg = "Delete cases successfully."
         return json_response_true(msg)
 
 
@@ -141,27 +147,3 @@ def get_checkups_by_number(request, case_number):
     return json_response_true(msg, {
         "checkups": serializer.data
     })
-
-
-# a test method for uploading files
-@api_view(['POST'])
-def test_upload(request):
-    case_number = request.POST.get("case_number", "")
-    checkup_item = request.POST.get("checkup_item", "")
-
-    checkup_pic = request.FILES.get("checkup_pic", "")
-    checkup_video = request.FILES.get("checkup_video", "")
-    pic_extend_name = checkup_pic.name[checkup_pic.name.rindex(".") + 1:]
-    allow_ends = ["png", "jpg"]
-    if pic_extend_name not in allow_ends:
-        return json_response_false("Pic format not supported.")
-    video_extend_name = checkup_video.name[checkup_video.name.rindex(".") + 1:]
-    allow_ends2 = ["mp4"]
-    if video_extend_name not in allow_ends2:
-        return json_response_false("Video format not supported.")
-
-    models.Checkup.objects.create(case_number=case_number,
-                                  checkup_item=checkup_item,
-                                  checkup_pic=checkup_pic,
-                                  checkup_video=checkup_video)
-    return json_response_true("Insert a checkup with picture and video successfully.")
