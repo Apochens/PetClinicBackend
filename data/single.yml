@@ -1,4 +1,4 @@
-传染病:
+infectious:
 - answer: 1
   description: 患有传染性肝炎的犬，眼角膜常常是
   optionA: 白色
@@ -48,7 +48,7 @@
   optionC: 传导麻醉
   optionD: 表面麻醉
   score: 5
-内科:
+internal:
 - answer: 4
   description: 犬尿石症是指尿路中的无机盐类结晶凝聚物，刺激尿路粘膜而引起出血，炎症的一种泌尿器官疾病，结石发生的部位有
   optionA: 输尿管
@@ -329,7 +329,7 @@
   optionC: 肛门囊切开引流
   optionD: 挤压排出囊内容物
   score: 5
-常用手术:
+surgery:
 - answer: 2
   description: 皮肤马拉色菌经常少量存在于犬、猫皮肤表面，当机体发生超敏反应引起的皮肤病，马拉色菌是一种
   optionA: 双相性真菌
@@ -477,7 +477,7 @@
   optionC: 人工可降解棉线
   optionD: 塑料纤维
   score: 5
-寄生虫病:
+parasitic:
 - answer: 2
   description: 宠物小狗患有钩虫病有什么症状？
   optionA: 四肢无力
@@ -506,7 +506,7 @@
   optionC: 免疫学检查
   optionD: 血液学检查
   score: 5
-外产科疾病:
+obstetric:
 - answer: 1
   description: 宠物产前子宫内感染的症状包括以下哪些？
   optionA: 体温升高和食欲不振
@@ -528,7 +528,7 @@
   optionC: 呼吸道症状和发热
   optionD: 肌肉萎缩和体重下降
   score: 5
-免疫:
+immunology:
 - answer: 3
   description: 狂犬病疫苗接种的主要方式是什么？
   optionA: 内服疫苗

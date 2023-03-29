@@ -9,8 +9,7 @@ urlpatterns = [
 
     # question
     path('question/', views.QuestionAPIView.as_view()),
-    # path('/question/<str:disease_type>/', views.get_questions_by_disease_type),
-    # path('/question/<str:keywords>/', views.get_questions_by_keywords),
+    path('question/init/', views.question_init),
     path('question/<str:question_type>/<int:question_id>/', views.get_single_question),
 
     # score
