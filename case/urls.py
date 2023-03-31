@@ -12,6 +12,4 @@ urlpatterns = [
     # checkup
     path('checkup/', views.CheckView.as_view()),
     path('checkup/<str:case_number>/', views.get_checkups_by_number),
-    # test for upload files
-    path('upload/', views.test_upload),
 ]

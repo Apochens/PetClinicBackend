@@ -13,6 +13,7 @@ This is a course project.
 - For authentication (REST API)
   - djangorestframework 3.14.0
   - djangorestframework-simplejwt 5.2.2
+- For cross domain issue: django-cors-headers
 
 ---
 
@@ -119,6 +120,7 @@ urlpattern = [
 ### Table Definitions
 
 **Basic architecture and functionalities management**
+
 
 | Table name              | Table items                                                     |
 |-------------------------|-----------------------------------------------------------------|
