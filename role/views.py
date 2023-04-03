@@ -1,5 +1,6 @@
 from pprint import pprint
 
+from django.views.decorators.http import require_http_methods
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from PetClinicBackend.utils import json_response_false, json_response_true
@@ -7,6 +8,7 @@ from . import models
 from . import serializers
 
 
+@require_http_methods(['GET'])
 def role_init(request):
     from yaml import load, FullLoader
     from pathlib import Path

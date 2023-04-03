@@ -1,8 +1,31 @@
 from django.contrib.auth.models import User
 from django.http import JsonResponse
+from django.views.decorators.http import require_http_methods
 from rest_framework import status
 from rest_framework.views import APIView
 from PetClinicBackend.utils import json_response_true, json_response_false
+
+
+@require_http_methods(['POST'])
+def register(request):
+    username = request.data.get('username', None)
+    if username is None:
+        return json_response_false('No username!')
+
+    if User.objects.filter(username=username).exists():
+        return json_response_false("This user exists already!")
+
+    password = request.data.get('password', None)
+    if password is None:
+        return json_response_false('No password!')
+
+    superuser = request.data.get('superuser', None)
+    if superuser is None or not superuser:
+        User.objects.create_user(username, password=password)
+    else:
+        User.objects.create_superuser(username, password=password)
+
+    return json_response_true("Create successfully!")
 
 
 class UserView(APIView):
@@ -18,26 +41,26 @@ class UserView(APIView):
             }, User.objects.all()))
         })
 
-    def post(self, request, *args, **kwargs):
-        """Create a new User"""
-        username = request.data.get('username', None)
-        if username is None:
-            return json_response_false('No username!')
-
-        if User.objects.filter(username=username).exists():
-            return json_response_false("This user exists already!")
-
-        password = request.data.get('password', None)
-        if password is None:
-            return json_response_false('No password!')
-
-        superuser = request.data.get('superuser', None)
-        if superuser is None or not superuser:
-            User.objects.create_user(username, password=password)
-        else:
-            User.objects.create_superuser(username, password=password)
-
-        return json_response_true("Create successfully!")
+    # def post(self, request, *args, **kwargs):
+    #     """Create a new User"""
+    #     username = request.data.get('username', None)
+    #     if username is None:
+    #         return json_response_false('No username!')
+    #
+    #     if User.objects.filter(username=username).exists():
+    #         return json_response_false("This user exists already!")
+    #
+    #     password = request.data.get('password', None)
+    #     if password is None:
+    #         return json_response_false('No password!')
+    #
+    #     superuser = request.data.get('superuser', None)
+    #     if superuser is None or not superuser:
+    #         User.objects.create_user(username, password=password)
+    #     else:
+    #         User.objects.create_superuser(username, password=password)
+    #
+    #     return json_response_true("Create successfully!")
 
     def put(self, request, *args, **kwargs):
         """Modify the user information"""
