@@ -1,11 +1,25 @@
 version: '3'
+
 services:
-  db:
+  web:
+    restart: always
+    build: .
+    command: /bin/bash -c "python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py runserver 127.0.0.1:8000"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mariadb
+#    volumes:
+#      - .:/app
+  mariadb:
     image: "mariadb:10.11"
     ports:
       - "3366:3306"
     volumes:
-      - ./db/data:/var/lib/mysql
-      - ./db/initdb.d:/docker-entrypoint-initdb.d
+      - db_data:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: "123456"
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: clinic
+
+volumes:
+  db_data:

@@ -69,7 +69,7 @@ def get_single_quiz(request, quiz_id):
             "id": quiz.id,
             "name": quiz.name,
             "duration": quiz.duration,
-            "students": { "list": student_ser.data},
+            "students": {"list": student_ser.data},
             "questions": {
                 models.QuestionType.SINGLE: single_ser.data,
                 models.QuestionType.MULTI: multi_ser.data,

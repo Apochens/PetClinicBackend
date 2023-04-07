@@ -119,7 +119,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'clinic',
-        'HOST': '127.0.0.1',
+        'HOST': 'mariadb',
         'PORT': '3366',
         'USER': 'root',
         'PASSWORD': '123456'
