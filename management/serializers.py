@@ -22,6 +22,11 @@ class CheckupSerializer(serializers.ModelSerializer):
         model = models.Checkup
         fields = "__all__"
 
+class HospitalizationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Hospitalization
+        fields = "__all__"
+
 # class RoleSerializer(serializers.ModelSerializer):
 #     class Meta:
 #         model = models.Role

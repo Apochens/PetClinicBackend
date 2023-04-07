@@ -1,5 +1,8 @@
+from datetime import datetime
+
 from PetClinicBackend.utils import read_csv_data
-from management.models import Department, Medicine, Instrumentation, Checkup
+from case.models import Case
+from management.models import Department, Medicine, Instrumentation, Checkup, Hospitalization
 
 
 def init_department():
@@ -55,4 +58,20 @@ def save_checkup(row):
     d.name = row[2]
     d.price = row[3]
     d.description = row[4]
+    d.save()
+
+def init_hospitalization():
+    rows = read_csv_data('hospitalization.csv')
+    for row in rows:
+        save_hospitalization(row)
+
+def save_hospitalization(row):
+    d = Hospitalization()
+    d.id = row[0]
+    d.case_id = row[1]
+    # assert Case.objects.get(id=d.case_id) is not None
+    d.price = row[2]
+    d.bg_time = datetime.strptime(row[3], '%Y/%m/%d')
+    d.ed_time = datetime.strptime(row[4], '%Y/%m/%d')
+    assert d.ed_time >= d.bg_time
     d.save()

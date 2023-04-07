@@ -1,5 +1,8 @@
 from django.db import models
 
+from case.models import Case
+
+
 class Department(models.Model):
     id = models.IntegerField(primary_key = True)
     name = models.CharField(max_length=200)
@@ -26,6 +29,13 @@ class Checkup(models.Model):
     name = models.CharField(max_length=200)
     price = models.IntegerField()
     description = models.TextField(max_length=1000)
+
+class Hospitalization(models.Model):
+    id = models.IntegerField(primary_key=True)
+    case_id = models.IntegerField()
+    price = models.IntegerField()
+    bg_time = models.DateTimeField()
+    ed_time = models.DateTimeField()
 
 # class Role(models.Model):
 #     id = models.UUIDField(primary_key = True)

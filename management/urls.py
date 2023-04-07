@@ -16,4 +16,7 @@ urlpatterns = [
     path('checkup/data/', views.CheckupAPIView.init),
     path('checkup/', views.CheckupAPIView.as_view()),
     path('checkup/<str:id>/', views.CheckupAPISingleView.as_view()),
+    path('hospitalization/data/', views.HospitalizationAPIView.init),
+    path('hospitalization/', views.HospitalizationAPIView.as_view()),
+    path('hospitalization/<str:id>/', views.HospitalizationAPISingleView.as_view()),
 ]

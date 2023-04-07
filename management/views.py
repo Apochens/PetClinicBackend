@@ -1,9 +1,12 @@
+from datetime import datetime
+
 from rest_framework.views import APIView
 
 from PetClinicBackend.utils import json_response_true, json_response_false
+from case.models import Case
 from management import serializers
-from management.models import Department, Medicine, Instrumentation, Checkup
-from management.util import init_department, init_medicine, init_instrumentation, init_checkup
+from management.models import Department, Medicine, Instrumentation, Checkup, Hospitalization
+from management.util import init_department, init_medicine, init_instrumentation, init_checkup, init_hospitalization
 
 
 # Create your views here.
@@ -286,7 +289,7 @@ class CheckupAPIView(APIView):
             if data["dept_id"]:
                 res.dept_id = Department.objects.get(id=data["dept_id"])
             if data["price"]:
-                res.method = data["price"]
+                res.price = data["price"]
             if data["description"]:
                 res.description = data["description"]
             res.save()
@@ -315,6 +318,81 @@ class CheckupAPISingleView(APIView):
             Checkup.objects.get(id=id).delete()
             return json_response_true("delete successfully", {
                 "checkup": serializer.data
+            })
+        except (Exception, BaseException) as e:
+            return json_response_false("invalid request, reason: " + str(e))
+
+class HospitalizationAPIView(APIView):
+    def init(request):
+        try:
+            init_hospitalization()
+            return json_response_true("init successfully")
+        except (Exception, BaseException) as e:
+            return json_response_false("invalid request, reason: " + str(e))
+
+    def get(self, request):
+        try:
+            res = Hospitalization.objects.all()
+            serializer = serializers.HospitalizationSerializer(res, many=True)
+            return json_response_true("get successfully", {
+                "hospitalizationlist": serializer.data
+            })
+        except (Exception, BaseException) as e:
+            return json_response_false("invalid request, reason: " + str(e))
+
+    def post(self, request):
+        try:
+            serializer = serializers.HospitalizationSerializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            return json_response_true("create new hospitalization successfully", {
+                "hospitalization": serializer.data
+            })
+        except (Exception, BaseException) as e:
+            return json_response_false("invalid request, reason: " + str(e))
+
+    def put(self, request):
+        try:
+            data = request.data
+            id = data["id"]
+            assert id is not None
+            res = Hospitalization.objects.get(id=id)
+            if data["case_id"]:
+                res.case_id = data["case_id"]
+                # assert Case.objects.get(id=d.case_id) is not None
+            if data["price"]:
+                res.price = data["price"]
+            if data["bg_time"]:
+                res.bg_time = datetime.strptime(data["bg_time"], '%Y-%m-%d')
+            if data["ed_time"]:
+                res.ed_time = data["ed_time"]
+            assert res.ed_time >= res.bg_time
+            res.save()
+            serializer = serializers.HospitalizationSerializer(res, many=False)
+            return json_response_true("update hospitalization successfully", {
+                "hospitalization": serializer.data
+            })
+        except (Exception, BaseException) as e:
+            return json_response_false("invalid request, reason: " + str(e))
+
+class HospitalizationAPISingleView(APIView):
+    def get(self, request, id):
+        try:
+            res = Hospitalization.objects.get(id=id)
+            serializer = serializers.HospitalizationSerializer(res, many=False)
+            return json_response_true("get successfully", {
+                "hospitalization": serializer.data
+            })
+        except (Exception, BaseException) as e:
+            return json_response_false("invalid request, reason: " + str(e))
+
+    def delete(self, request, id):
+        try:
+            res = Hospitalization.objects.get(id=id)
+            serializer = serializers.HospitalizationSerializer(res, many=False)
+            Hospitalization.objects.get(id=id).delete()
+            return json_response_true("delete successfully", {
+                "hospitalization": serializer.data
             })
         except (Exception, BaseException) as e:
             return json_response_false("invalid request, reason: " + str(e))
