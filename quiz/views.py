@@ -1,6 +1,7 @@
 from pprint import pprint
 
 from django.contrib.auth.models import User
+from django.views.decorators.http import require_http_methods
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 
@@ -8,7 +9,21 @@ from PetClinicBackend.utils import json_response_false, json_response_true
 from . import models, serializers
 
 
+@require_http_methods(['GET'])
 def question_init(request):
+
+    if models.SingleChoiceQuestion.objects.exists():
+        return json_response_true("Data <Single> already loaded")
+
+    if models.MultiChoiceQuestion.objects.exists():
+        return json_response_true("Data <Multi> already loaded")
+
+    if models.TrueOrFalseQuestion.objects.exists():
+        return json_response_true("Data <TOF> already loaded")
+
+    if models.TextQuestion.objects.exists():
+        return json_response_true("Data <Text> already loaded")
+
     from yaml import load, FullLoader
     from pathlib import Path
 

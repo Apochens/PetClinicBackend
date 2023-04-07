@@ -10,6 +10,10 @@ from . import serializers
 
 @require_http_methods(['GET'])
 def role_init(request):
+
+    if models.Role.objects.exists():
+        return json_response_true("Data <Role> already loaded")
+
     from yaml import load, FullLoader
     from pathlib import Path
 
