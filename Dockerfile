@@ -15,6 +15,7 @@ RUN pip install \
 
 COPY . .
 
+RUN sed -i "s/'127.0.0.1'/'mariadb'/g" ./PetClinicBackend/settings.py
 
 
 

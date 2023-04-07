@@ -1,25 +1,27 @@
+import json
+
 from django.contrib.auth.models import User
-from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
-from rest_framework import status
 from rest_framework.views import APIView
+
 from PetClinicBackend.utils import json_response_true, json_response_false
 
 
 @require_http_methods(['POST'])
 def register(request):
-    username = request.data.get('username', None)
+    data = json.loads(request.body)
+    username = data.get('username', None)
     if username is None:
         return json_response_false('No username!')
 
     if User.objects.filter(username=username).exists():
         return json_response_false("This user exists already!")
 
-    password = request.data.get('password', None)
+    password = data.get('password', None)
     if password is None:
         return json_response_false('No password!')
 
-    superuser = request.data.get('superuser', None)
+    superuser = data.get('superuser', None)
     if superuser is None or not superuser:
         User.objects.create_user(username, password=password)
     else:
