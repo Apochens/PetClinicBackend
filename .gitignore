@@ -134,4 +134,5 @@ db/
 */migrations/
 
 # files
-media/
+media/images
+media/videos
