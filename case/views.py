@@ -11,6 +11,10 @@ from . import models, serializers, util
 class CaseView(APIView):
     def get(self, request):
         cases = models.Case.objects.all()
+        if len(cases) == 0:
+            util.init_cases()
+            util.init_checkups()
+            cases = models.Case.objects.all()
         serializer = serializers.CaseSerializer(cases, many=True)
         util.process_urls(serializer.data)
         msg = "Get All Cases successfully!"

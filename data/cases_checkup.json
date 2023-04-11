@@ -1,0 +1,11 @@
+[
+  {
+    "case_number": "qwr01",
+    "checkup_item": "犬瘟热CDV试纸检测",
+    "checkup_text": "1. 打开包装，把CDV相关组件放置干燥平稳处。\n 2. 用棉签采集：眼分泌物、鼻液、唾液（只取一点点即可，太多会影像效果。可先从干净部位采集）。\n3. 把棉签采集物放入“反映缓冲液”里充分混匀。\n 4. 用一次性滴管，吸取反映缓冲液里的样品。\n 5. 打开包装取出测试卡，将它放置于平敞干燥的表面，用滴管向测试卡的样品孔中缓慢且精确的加入3~4滴混合液。\n 6. 当反映进行时、可看到紫红色的条带在试纸中间的反映窗中移动；5~10分钟内读取结果。",
+    "checkup_pic1": "init_pic/dog1_checkup_pic1.png",
+    "checkup_pic2": "init_pic/dog1_checkup_pic2.png",
+    "checkup_pic3": "init_pic/dog1_checkup_pic3.png",
+    "checkup_video": "init_video/dog1_checkup_video.mp4"
+  }
+]

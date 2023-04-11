@@ -1,0 +1,27 @@
+[
+  {
+    "disease_type": "传染病",
+    "disease_name": "犬瘟热",
+    "case_number": "qwr01",
+    "pet_name": "dog1",
+    "pet_species": "Dog",
+    "pet_age": 1,
+    "owner_name": "Doggy",
+    "owner_phone": 13819990000,
+    "symptom_text": "体温高达39.5摄氏度，食欲不振、精神沉郁、眼鼻流出水样分泌物、打喷嚏、有腹泻。",
+    "diagnosis_text": "犬瘟热症状初期。",
+    "treatment_text": "1. 饮食：\n{牛肉+清水}→{煮熟→切小块→强制喂食}！\n{用法}：必须进食，强制喂食。\n{每次用量}：平常饭量为参考。\n{每日用量}：每日3次以上。\n{期限}：直到动物自己能吃为止。\n2. 输液：\n{①挂输液壶}→{②把流速调节器调成阻止流液状}→{③把药配好后、用瓶塞穿刺器或者用大针管抽药的方式、装进输液筒内}→{④捏滴壶使药流进滴壶内}→{⑤把流速调节器调成可以流液状}→{⑦待药流出输液针头后、把输液针头插进留置针里}→{⑧用流速调节器调速}→{⑨输液完毕后打封针剂到留置针内}",
+    "symptom_pic1": "init_pic/dog1_symptom_pic1.png",
+    "symptom_pic2": "init_pic/dog1_symptom_pic2.png",
+    "symptom_pic3": "",
+    "diagnosis_pic1": "",
+    "diagnosis_pic2": "",
+    "diagnosis_pic3": "",
+    "treatment_pic1": "init_pic/dog1_treatment_pic1.png",
+    "treatment_pic2": "init_pic/dog1_treatment_pic2.png",
+    "treatment_pic3": "",
+    "symptom_video": "",
+    "diagnosis_video": "",
+    "treatment_video": "init_video/dog1_treatment_video.mp4"
+  }
+]
