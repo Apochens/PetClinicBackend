@@ -7,6 +7,14 @@ from rest_framework.views import APIView
 from PetClinicBackend.utils import json_response_true, json_response_false
 
 
+@require_http_methods(['GET'])
+def authentication_init(request):
+    User.objects.create_superuser('root', 'root@123.com', '123456')
+    User.objects.create_user('user1', 'user1@123.com', 'user1')
+    User.objects.create_user('user2', 'user1@123.com', 'user2')
+    User.objects.create_user('user3', 'user1@123.com', 'user3')
+
+
 @require_http_methods(['POST'])
 def register(request):
     data = json.loads(request.body)
