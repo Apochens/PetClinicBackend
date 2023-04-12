@@ -13,7 +13,7 @@ This is a course project.
 - For authentication (REST API)
   - djangorestframework 3.14.0
   - djangorestframework-simplejwt 5.2.2
-- For cross domain issue: django-cors-headers
+- For cross domain issue: django-cors-headers 3.14.0
 
 ---
 
@@ -33,6 +33,35 @@ PetClinicBackend
 ```
 
 ---
+## Run This Server
+
+### Run locally
+
+To run this server locally, you need to install [MariaDB](https://mariadb.org/download/?t=mariadb&p=mariadb&r=10.11.2&os=windows&cpu=x86_64&pkg=msi&m=blendbyte) first. 
+The MariaDB setting are shown in the [Preparation](#preparation)
+Then clone this repo and `cd` into it.
+
+```shell
+git clone https://github.com/Apochens/PetClinicBackend.git
+cd PetClinicBackend
+```
+Then install the python libraries listed in the [Dockerfile](./Dockerfile) and use the following command to start the server.
+
+```shell
+python3 makemigrations
+python3 migrate
+python3 manage.py runserver 127.0.0.1:8000
+```
+
+Then visit `127.0.0.1:8000` in the bowser for fun!
+
+### Run with Docker
+
+Only one command to start the server:
+
+```shell
+docker-compose up
+```
 
 
 ## Interfaces
