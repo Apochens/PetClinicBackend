@@ -138,7 +138,7 @@ def get_single_question(request, question_type, question_id):
         if not query_set.exists():
             return json_response_false(f"No such single choice question {question_id}")
         return json_response_true("Get single choice question", {
-            "question": serializers.SingleChoiceQuestionSerializer(query_set[0]).data
+            "data": serializers.SingleChoiceQuestionSerializer(query_set[0]).data
         })
     if question_type == models.QuestionType.MULTI:
         query_set = models.MultiChoiceQuestion.objects.filter(id=question_id)

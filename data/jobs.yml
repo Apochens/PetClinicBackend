@@ -81,7 +81,7 @@
 
 注射麻醉:
   - name: 麻醉前评估
-    description:
+    description: 安全有效的麻醉依赖于麻醉前的动物评估和准备。完善的麻醉前评估可帮助兽医发现潜在的健康问题，了解动物状态。
   - name: 麻醉前用药
     description:
   - name: 麻醉诱导

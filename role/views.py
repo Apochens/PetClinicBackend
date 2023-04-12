@@ -26,7 +26,7 @@ def role_init(request):
         } for role in roles]
 
     def load_workflow():
-        workflows = load(Path('./data/workflow.yml').open('r', encoding='utf-8'), Loader=FullLoader)
+        workflows = load(Path('./data/jobs.yml').open('r', encoding='utf-8'), Loader=FullLoader)
         return [{
             'name': workflow,
             'process': workflows[workflow],
@@ -50,7 +50,6 @@ def role_init(request):
     return json_response_true("success")
 
 
-# Create your views here.
 class RoleAPIView(APIView):
 
     def get(self, request):
@@ -66,5 +65,8 @@ def get_role_by_id(request, role_id):
     return json_response_true("Return information about reception", {
         'role': role.name,
         'description': role.description,
-        'jobs': {workflow.name: workflow.process for workflow in workflows},
+        'jobs': [{
+            "name": workflow.name,
+            "process": workflow.process,
+        } for workflow in workflows],
     })
