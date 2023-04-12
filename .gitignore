@@ -136,3 +136,5 @@ db/
 # files
 media/images
 media/videos
+
+db_data
