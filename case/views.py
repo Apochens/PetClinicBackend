@@ -145,19 +145,6 @@ def get_cases_by_name(request, disease_name):
 
 
 @api_view(['GET'])
-def get_cases_by_type(request, disease_type):
-    cases = models.Case.objects.filter(disease_type=disease_type)
-    if not cases.exists():
-        return json_response_false("No case with this disease type!")
-    msg = "Find cases with this disease type successfully!"
-    serializer = serializers.CaseSerializer(cases, many=True)
-    util.process_urls(serializer.data)
-    return json_response_true(msg, {
-        "cases": serializer.data
-    })
-
-
-@api_view(['GET'])
 def get_checkups_by_number(request, case_number):
     checkups = models.Checkup.objects.filter(case_number=case_number)
     if not checkups.exists():
