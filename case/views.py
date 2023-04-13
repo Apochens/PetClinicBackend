@@ -9,12 +9,21 @@ from . import models, serializers, util
 
 
 class CaseView(APIView):
+    def init(request):
+        try:
+            categorys = models.Category.objects.all()
+            if len(categorys) == 0:
+                util.init_cases()
+                util.init_checkups()
+                util.init_category()
+                return json_response_true("init case data successfully")
+            else:
+                return json_response_false("case data already init before")
+        except (Exception, BaseException) as e:
+            return json_response_false("invalid request, reason: " + str(e))
+
     def get(self, request):
         cases = models.Case.objects.all()
-        if len(cases) == 0:
-            util.init_cases()
-            util.init_checkups()
-            cases = models.Case.objects.all()
         serializer = serializers.CaseSerializer(cases, many=True)
         util.process_urls(serializer.data)
         msg = "Get All Cases successfully!"
@@ -101,13 +110,6 @@ class CheckView(APIView):
 class CategoryView(APIView):
     def get(self, request):
         categories = models.Category.objects.all()
-        if len(categories) == 0:
-            util.init_category()
-            categories = models.Category.objects.all()
-        cases = models.Case.objects.all()
-        if len(cases) == 0:
-            util.init_cases()
-            util.init_checkups()
         serializer = serializers.CategorySerializer(categories, many=True)
         msg = "Get all categories successfully!"
         return json_response_true(msg, {

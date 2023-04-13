@@ -9,3 +9,6 @@ wget 127.0.0.1:8000/quiz/question/init
 
 # Database initialization - role
 wget 127.0.0.1:8000/role/init
+
+# Database initialization - case
+wget 127.0.0.1:8000/case/init

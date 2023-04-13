@@ -13,4 +13,6 @@ urlpatterns = [
     # checkup
     path('checkup/', views.CheckView.as_view()),
     path('checkup/<str:case_number>/', views.get_checkups_by_number),
+    # data initialization
+    path('init/', views.CaseView.init),
 ]
