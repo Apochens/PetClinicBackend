@@ -74,20 +74,17 @@ class UserView(APIView):
 
     def put(self, request, *args, **kwargs):
         """Modify the user information"""
-        uid = request.data.get('id', None)
-        if id is None:
-            return json_response_false("No id provided!")
+        username = request.data.get('username', None)
+        if username is None:
+            return json_response_false("No username given!")
+        # if username is not None:
+        #     if User.objects.filter(username=username).exists():
+        #         return json_response_false("This username exists already!")
 
-        if not User.objects.filter(id=uid).exists():
+        if not User.objects.filter(username=username).exists():
             return json_response_false("No such user!")
 
-        user = User.objects.get(id=uid)
-
-        username = request.data.get('username', None)
-        if username is not None:
-            if User.objects.filter(username=username).exists():
-                return json_response_false("This username exists already!")
-            user.username = username
+        user = User.objects.get(username=username)
 
         password = request.data.get('password', None)
         if password is not None:
