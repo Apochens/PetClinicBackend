@@ -7,5 +7,68 @@
     "checkup_pic2": "init_pic/dog1_checkup_pic2.png",
     "checkup_pic3": "init_pic/dog1_checkup_pic3.png",
     "checkup_video": "init_video/dog1_checkup_video.mp4"
+  },
+  {
+    "case_number": "qxx01",
+    "checkup_item": "犬细小检测",
+    "checkup_text": "检测犬细小病毒主要用检测卡，因为其快捷，使用方便，而且准确率高。犬细小病毒快速检测试纸卡可以帮助兽医及宠物主人在5～10分钟内准确地鉴别诊断犬是否感染犬细小病毒。",
+    "checkup_pic1": "init_pic/qxx_checkup1.png",
+    "checkup_pic2": "init_pic/qxx_checkup2.png",
+    "checkup_pic3": "init_pic/qxx_checkup3.png",
+    "checkup_video": "init_video/qxx_checkup_vid.mp4"
+  },
+  {
+    "case_number": "gz01",
+    "checkup_item": "X射线检查",
+    "checkup_text": "根据外伤史和局部症状可以确诊，但需要对宠物宝贝进行X射线检查或照相检查具体情况。",
+    "checkup_pic1": "init_pic/gz01_checkup.png",
+    "checkup_pic2": "init_pic/gz01_checkup2.png",
+    "checkup_pic3": "",
+    "checkup_video": "init_video/gz01_checkup.mp4"
+  },
+  {
+    "case_number": "dog_my",
+    "checkup_item": "犬六联疫苗",
+    "checkup_text": "预防狂犬病、犬瘟热、犬副流感、犬传染性肝炎、犬细小病毒性肠炎与冠状病毒性肠炎。\n免疫持续期为1 年。\n临用前，本疫苗每个剂量加注射用水2毫升，充分摇匀，使其完全溶解，肌内或皮下注射。仔犬从离乳之日起，以2-3周的间隔，连续注苗3次，每次注射1个免疫剂量；成年犬，每年注射2次，每次注射1个免疫剂量。",
+    "checkup_pic1": "init_pic/my_checkup3.png",
+    "checkup_pic2": "init_pic/my_checkup_ll.png",
+    "checkup_pic3": "init_pic/my_checkup2.png",
+    "checkup_video": "init_video/qll.mp4"
+  },
+  {
+    "case_number": "dog_my",
+    "checkup_item": "狂犬苗",
+    "checkup_text": "冻干人用狂犬病疫苗（人二倍体细胞）为冻干粉针剂。复溶后规格为1ml/剂。效价≥4.0IU/ml。\nVERO细胞狂犬病疫苗及精制地鼠肾细胞狂犬病疫苗规格为1ml/安培，效价≧2.5IU。巴斯德精制VERO细胞狂犬病疫苗规格为0.5ml/安培,效价≧2.5IU。\n规程：咬伤后预防 0天(当天)、3天、7天、14天、28天；无咬伤预防0天（当天)、7天、21天。",
+    "checkup_pic1": "init_pic/my_checkup.png",
+    "checkup_pic2": "init_pic/kqym.png",
+    "checkup_pic3": "init_pic/kqym2.png",
+    "checkup_video": "init_video/kyqm.mp4"
+  },
+  {
+    "case_number": "cat_my",
+    "checkup_item": "猫细小病毒疫苗",
+    "checkup_text": "预防猫细小病毒：猫细小病毒又称：猫传染性肠炎病毒、猫泛白细胞减少症病毒、猫瘟。",
+    "checkup_pic1": "init_pic/cat_mxx.png",
+    "checkup_pic2": "init_pic/cat_mxx2.png",
+    "checkup_pic3": "init_pic/cat_mxx3.png",
+    "checkup_video": "init_video/mxx_checkup.mp4"
+  },
+  {
+    "case_number": "cat_my",
+    "checkup_item": "猫杯状病毒疫苗",
+    "checkup_text": "预防猫杯状病毒：猫杯状病毒是一种上呼吸道感染的病,发病率较高,8～12周龄的小猫最容易感染,症状常被大家说成是猫感冒。",
+    "checkup_pic1": "init_pic/mbz1.png",
+    "checkup_pic2": "init_pic/mbz2.png",
+    "checkup_pic3": "init_pic/mbz3.png",
+    "checkup_video": "init_video/mbz_checkup.mp4"
+  },
+  {
+    "case_number": "cat_my",
+    "checkup_item": "猫白血病病毒疫苗",
+    "checkup_text": "预防猫白血病病毒：猫白血病是猫最常见的非创伤致死性疾病,该病潜伏期较长,临床上具有白血病、淋巴瘤等多种表现形式,发病率与致死率较高",
+    "checkup_pic1": "init_pic/mbxb1.png",
+    "checkup_pic2": "init_pic/mbxb2.png",
+    "checkup_pic3": "init_pic/mbxb3.png",
+    "checkup_video": "init_video/mbxb_checkup.mp4"
   }
 ]

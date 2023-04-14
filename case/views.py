@@ -11,14 +11,13 @@ from . import models, serializers, util
 class CaseView(APIView):
     def init(request):
         try:
-            categorys = models.Category.objects.all()
-            if len(categorys) == 0:
-                util.init_cases()
-                util.init_checkups()
-                util.init_category()
-                return json_response_true("init case data successfully")
-            else:
-                return json_response_false("case data already init before")
+            models.Category.objects.all().delete()
+            models.Case.objects.all().delete()
+            models.Checkup.objects.all().delete()
+            util.init_cases()
+            util.init_checkups()
+            util.init_category()
+            return json_response_true("init case data successfully")
         except (Exception, BaseException) as e:
             return json_response_false("invalid request, reason: " + str(e))
 
