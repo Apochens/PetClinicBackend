@@ -137,7 +137,9 @@ def get_single_case_by_number(request, case_number):
 def get_cases_by_name(request, disease_name):
     cases = models.Case.objects.filter(disease_name=disease_name)
     if not cases.exists():
-        return json_response_false("No case with this disease name!")
+        cases = models.Case.objects.filter(disease_type=disease_name)
+        if not cases.exists():
+            return json_response_false("No case!")
     msg = "Find cases with this disease_name successfully!"
     serializer = serializers.CaseSerializer(cases, many=True)
     util.process_urls(serializer.data)
