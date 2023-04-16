@@ -11,19 +11,6 @@ from . import models, serializers
 
 @require_http_methods(['GET'])
 def question_init(request):
-
-    if models.SingleChoiceQuestion.objects.exists():
-        return json_response_true("Data <Single> already loaded")
-
-    if models.MultiChoiceQuestion.objects.exists():
-        return json_response_true("Data <Multi> already loaded")
-
-    if models.TrueOrFalseQuestion.objects.exists():
-        return json_response_true("Data <TOF> already loaded")
-
-    if models.TextQuestion.objects.exists():
-        return json_response_true("Data <Text> already loaded")
-
     from yaml import load, FullLoader
     from pathlib import Path
 
@@ -42,11 +29,19 @@ def question_init(request):
                 })
         return questions
 
-    sers = [
-        serializers.SingleChoiceQuestionSerializer(data=load_questions('./data/single.yml'), many=True),
-        serializers.MultiChoiceQuestionSerializer(data=load_questions('./data/multi.yml'), many=True),
-        serializers.TrueOrFalseQuestionSerializer(data=load_questions('./data/tof.yml'), many=True),
-    ]
+    sers = []
+
+    if not models.SingleChoiceQuestion.objects.exists():
+        sers.append(serializers.SingleChoiceQuestionSerializer(data=load_questions('./data/single.yml'), many=True))
+
+    if not models.MultiChoiceQuestion.objects.exists():
+        sers.append(serializers.MultiChoiceQuestionSerializer(data=load_questions('./data/multi.yml'), many=True))
+
+    if not models.TrueOrFalseQuestion.objects.exists():
+        sers.append(serializers.TrueOrFalseQuestionSerializer(data=load_questions('./data/tof.yml'), many=True))
+
+    if not models.TextQuestion.objects.exists():
+        sers.append(serializers.TextQuestionSerializer(data=load_questions('./data/text.yml'), many=True))
 
     try:
         for ser in sers:
@@ -184,7 +179,7 @@ class QuestionAPIView(APIView):
         single = models.SingleChoiceQuestion.objects.all()
         multi = models.MultiChoiceQuestion.objects.all()
         tof = models.TrueOrFalseQuestion.objects.all()
-        text = models.TrueOrFalseQuestion.objects.all()
+        text = models.TextQuestion.objects.all()
 
         return json_response_true("Fetch all questions successfully!", {
             models.QuestionType.SINGLE:
