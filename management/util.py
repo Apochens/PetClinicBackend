@@ -15,6 +15,7 @@ def save_department(row):
     d.id = row[0]
     d.name = row[1]
     d.description = row[2]
+    d.manager = row[3]
     d.save()
 
 def init_medicine():
