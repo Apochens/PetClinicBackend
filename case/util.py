@@ -70,3 +70,23 @@ def init_checkups():
             c.checkup_pic3 = data['checkup_pic3']
             c.checkup_video = data['checkup_video']
             c.save()
+
+
+def get_pic_name(path):
+    res = ""
+    for c in path.split("images/")[1]:
+        if c == '.':
+            break
+        else:
+            res = res + c
+    return res
+
+
+def get_video_name(path):
+    res = ""
+    for c in path.split("videos/")[1]:
+        if c == '.':
+            break
+        else:
+            res = res + c
+    return res

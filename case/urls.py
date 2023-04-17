@@ -15,4 +15,7 @@ urlpatterns = [
     path('checkup/<str:case_number>/', views.get_checkups_by_number),
     # data initialization
     path('init/', views.CaseView.init),
+    # video and picture uploading
+    path('upload/picture/', views.post_picture),
+    path('upload/video/', views.post_video),
 ]

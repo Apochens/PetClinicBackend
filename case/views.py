@@ -1,6 +1,8 @@
+from django.views import View
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 
+from PetClinicBackend import settings
 from PetClinicBackend.utils import json_response_false, json_response_true
 from . import models, serializers, util
 
@@ -24,7 +26,7 @@ class CaseView(APIView):
     def get(self, request):
         cases = models.Case.objects.all()
         serializer = serializers.CaseSerializer(cases, many=True)
-        util.process_urls(serializer.data)
+        # util.process_urls(serializer.data)
         msg = "Get All Cases successfully!"
         return json_response_true(msg, {
             "cases": serializer.data
@@ -71,7 +73,7 @@ class CheckView(APIView):
     def get(self, request):
         checks = models.Checkup.objects.all()
         serializer = serializers.CheckupSerializer(checks, many=True)
-        util.process_urls(serializer.data)
+        # util.process_urls(serializer.data)
         msg = "Get All Checkups successfully!"
         return json_response_true(msg, {
             "checkups": serializer.data
@@ -126,7 +128,7 @@ def get_single_case_by_number(request, case_number):
         return json_response_false("No case with this case number!")
     msg = "Find case with this case number successfully!"
     serializer = serializers.CaseSerializer(case, many=True)
-    util.process_urls(serializer.data)
+    # util.process_urls(serializer.data)
     return json_response_true(msg, {
         "case": serializer.data[0]
     })
@@ -141,7 +143,7 @@ def get_cases_by_name(request, disease_name):
             return json_response_false("No case!")
     msg = "Find cases with this disease_name successfully!"
     serializer = serializers.CaseSerializer(cases, many=True)
-    util.process_urls(serializer.data)
+    # util.process_urls(serializer.data)
     return json_response_true(msg, {
         "cases": serializer.data
     })
@@ -154,7 +156,7 @@ def get_cases_by_type(request, disease_type):
         return json_response_false("No case with this disease type!")
     msg = "Find cases with this disease type successfully!"
     serializer = serializers.CaseSerializer(cases, many=True)
-    util.process_urls(serializer.data)
+    # util.process_urls(serializer.data)
     return json_response_true(msg, {
         "cases": serializer.data
     })
@@ -167,7 +169,57 @@ def get_checkups_by_number(request, case_number):
         return json_response_false("No checkup with this case number!")
     msg = "Find checkups with this case number successfully!"
     serializer = serializers.CheckupSerializer(checkups, many=True)
-    util.process_urls(serializer.data)
+    # util.process_urls(serializer.data)
     return json_response_true(msg, {
         "checkups": serializer.data
+    })
+
+
+@api_view(['POST'])
+def post_picture(request):
+    pic = request.FILES.get("pic", None)
+    if pic is None:
+        return json_response_false("Field 'pic' missing, please check again!")
+    try:
+        models.Pictures.objects.create(pic=pic)
+    except Exception as e:
+        return json_response_true("Fail to upload a pic", {
+            "url": "none",
+            "name": str(e),
+            "status": "fail",
+            "thumbUrl": "none"
+        })
+    serializer = serializers.PicturesSerializer(models.Pictures.objects.all().last())
+    msg = "Upload a pic successfully!"
+    pic_name = util.get_pic_name(serializer.data['pic'])
+    return json_response_true(msg, {
+        "url": settings.WEB_HOST_MEDIA_URL + serializer.data['pic'],
+        "name": pic_name,
+        "status": "done",
+        "thumbUrl": settings.WEB_HOST_MEDIA_URL + serializer.data['pic']
+    })
+
+
+@api_view(['POST'])
+def post_video(request):
+    video = request.FILES.get("video", None)
+    if video is None:
+        return json_response_false("Field 'video' missing, please check again!")
+    try:
+        models.Videos.objects.create(video=video)
+    except Exception as e:
+        return json_response_true("Fail to upload a video", {
+            "url": "none",
+            "name": str(e),
+            "status": "fail",
+            "thumbUrl": "none"
+        })
+    serializer = serializers.VideosSerializer(models.Videos.objects.all().last())
+    msg = "Upload a video successfully!"
+    video_name = util.get_video_name(serializer.data['video'])
+    return json_response_true(msg, {
+        "url": settings.WEB_HOST_MEDIA_URL + serializer.data['video'],
+        "name": video_name,
+        "status": "done",
+        "thumbUrl": settings.WEB_HOST_MEDIA_URL + serializer.data['video']
     })

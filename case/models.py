@@ -15,18 +15,18 @@ class Case(models.Model):
     symptom_text = models.TextField(max_length=1000, default="")
     diagnosis_text = models.TextField(max_length=1000, default="")
     treatment_text = models.TextField(max_length=1000, default="")
-    symptom_pic1 = models.ImageField(upload_to='images/symptom/', null=True)
-    symptom_pic2 = models.ImageField(upload_to='images/symptom/', null=True)
-    symptom_pic3 = models.ImageField(upload_to='images/symptom/', null=True)
-    diagnosis_pic1 = models.ImageField(upload_to='images/diagnosis/', null=True)
-    diagnosis_pic2 = models.ImageField(upload_to='images/diagnosis/', null=True)
-    diagnosis_pic3 = models.ImageField(upload_to='images/diagnosis/', null=True)
-    treatment_pic1 = models.ImageField(upload_to='images/treatment/', null=True)
-    treatment_pic2 = models.ImageField(upload_to='images/treatment/', null=True)
-    treatment_pic3 = models.ImageField(upload_to='images/treatment/', null=True)
-    symptom_video = models.FileField(upload_to='videos/symptom/', null=True)
-    diagnosis_video = models.FileField(upload_to='videos/diagnosis/', null=True)
-    treatment_video = models.FileField(upload_to='videos/treatment/', null=True)
+    symptom_pic1 = models.CharField(max_length=1000, default="")
+    symptom_pic2 = models.CharField(max_length=1000, default="")
+    symptom_pic3 = models.CharField(max_length=1000, default="")
+    diagnosis_pic1 = models.CharField(max_length=1000, default="")
+    diagnosis_pic2 = models.CharField(max_length=1000, default="")
+    diagnosis_pic3 = models.CharField(max_length=1000, default="")
+    treatment_pic1 = models.CharField(max_length=1000, default="")
+    treatment_pic2 = models.CharField(max_length=1000, default="")
+    treatment_pic3 = models.CharField(max_length=1000, default="")
+    symptom_video = models.CharField(max_length=1000, default="")
+    diagnosis_video = models.CharField(max_length=1000, default="")
+    treatment_video = models.CharField(max_length=1000, default="")
 
 
 class Checkup(models.Model):
@@ -34,10 +34,10 @@ class Checkup(models.Model):
     case_number = models.CharField(max_length=100, default="")
     checkup_item = models.CharField(max_length=100, default="")
     checkup_text = models.TextField(max_length=1000, default="")
-    checkup_pic1 = models.ImageField(upload_to='images/checkup/', null=True)
-    checkup_pic2 = models.ImageField(upload_to='images/checkup/', null=True)
-    checkup_pic3 = models.ImageField(upload_to='images/checkup/', null=True)
-    checkup_video = models.FileField(upload_to='videos/checkup/', null=True)
+    checkup_pic1 = models.CharField(max_length=1000, default="")
+    checkup_pic2 = models.CharField(max_length=1000, default="")
+    checkup_pic3 = models.CharField(max_length=1000, default="")
+    checkup_video = models.CharField(max_length=1000, default="")
 
 
 class Category(models.Model):
@@ -48,3 +48,13 @@ class Category(models.Model):
     key = models.CharField(max_length=1000, default="")
     # name list
     children = models.JSONField(default=dict)
+
+
+class Pictures(models.Model):
+    pictures_id = models.BigAutoField
+    pic = models.ImageField(upload_to='images/')
+
+
+class Videos(models.Model):
+    videos_id = models.BigAutoField
+    video = models.FileField(upload_to='videos/')
