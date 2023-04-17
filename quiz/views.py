@@ -115,7 +115,32 @@ class QuizAPIView(APIView):
         return json_response_true(msg)
 
     def put(self, request):
-        serializer = serializers.QuizSerializer(data=request.data)
+        id = request.data.get('id', None)
+        if id is None:
+            return json_response_false("No id provided!")
+
+        if not models.Quiz.objects.filter(id=id).exists():
+            return json_response_false(f"No such quiz with id {id}!")
+
+        quiz = models.Quiz.objects.get(id=id)
+
+        description = request.data.get('description', None)
+        if description is not None:
+            quiz.description = description
+
+        duration = request.data.get('duration', None)
+        if duration is not None:
+            quiz.duration = duration
+
+        questions = request.data.get('questions', None)
+        if questions is not None:
+            quiz.questions = questions
+
+        students = request.data.get('students', None)
+        if students is not None:
+            quiz.students = students
+
+        quiz.save()
         return json_response_true("Modified successfully!")
 
     def delete(self, request):

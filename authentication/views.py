@@ -38,6 +38,18 @@ def register(request):
     return json_response_true("Create successfully!")
 
 
+@require_http_methods(['GET'])
+def status(request, username):
+    if not User.objects.filter(username=username).exists():
+        return json_response_false("No such user!")
+
+    user = User.objects.get(username=username)
+
+    return json_response_true("Get user status successfully!", {
+        'superuser': user.is_superuser
+    })
+
+
 class UserView(APIView):
 
     def get(self, request, *args, **kwargs):
