@@ -1,5 +1,3 @@
-import os
-
 from . import models
 import json
 from PetClinicBackend import settings
@@ -20,8 +18,10 @@ def process_urls(serializer_data):
     for record in serializer_data:
         for key in record.keys():
             if "pic" in key or "video" in key:
-                if record[key] is not None:
-                    record[key] = settings.WEB_HOST_MEDIA_URL + record[key]
+                if record[key] is not None and "127" not in record[key] and record[key] is not "":
+                    record[key] = settings.WEB_HOST_MEDIA_URL + "/media/" + record[key]
+                elif record[key] is not None and "127" in record[key]:
+                    continue
                 else:
                     record[key] = ""
 

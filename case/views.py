@@ -1,4 +1,3 @@
-from django.views import View
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 
@@ -26,7 +25,7 @@ class CaseView(APIView):
     def get(self, request):
         cases = models.Case.objects.all()
         serializer = serializers.CaseSerializer(cases, many=True)
-        # util.process_urls(serializer.data)
+        util.process_urls(serializer.data)
         msg = "Get All Cases successfully!"
         return json_response_true(msg, {
             "cases": serializer.data
@@ -73,7 +72,7 @@ class CheckView(APIView):
     def get(self, request):
         checks = models.Checkup.objects.all()
         serializer = serializers.CheckupSerializer(checks, many=True)
-        # util.process_urls(serializer.data)
+        util.process_urls(serializer.data)
         msg = "Get All Checkups successfully!"
         return json_response_true(msg, {
             "checkups": serializer.data
@@ -128,7 +127,7 @@ def get_single_case_by_number(request, case_number):
         return json_response_false("No case with this case number!")
     msg = "Find case with this case number successfully!"
     serializer = serializers.CaseSerializer(case, many=True)
-    # util.process_urls(serializer.data)
+    util.process_urls(serializer.data)
     return json_response_true(msg, {
         "case": serializer.data[0]
     })
@@ -143,7 +142,7 @@ def get_cases_by_name(request, disease_name):
             return json_response_false("No case!")
     msg = "Find cases with this disease_name successfully!"
     serializer = serializers.CaseSerializer(cases, many=True)
-    # util.process_urls(serializer.data)
+    util.process_urls(serializer.data)
     return json_response_true(msg, {
         "cases": serializer.data
     })
@@ -156,7 +155,7 @@ def get_cases_by_type(request, disease_type):
         return json_response_false("No case with this disease type!")
     msg = "Find cases with this disease type successfully!"
     serializer = serializers.CaseSerializer(cases, many=True)
-    # util.process_urls(serializer.data)
+    util.process_urls(serializer.data)
     return json_response_true(msg, {
         "cases": serializer.data
     })
@@ -169,7 +168,7 @@ def get_checkups_by_number(request, case_number):
         return json_response_false("No checkup with this case number!")
     msg = "Find checkups with this case number successfully!"
     serializer = serializers.CheckupSerializer(checkups, many=True)
-    # util.process_urls(serializer.data)
+    util.process_urls(serializer.data)
     return json_response_true(msg, {
         "checkups": serializer.data
     })
