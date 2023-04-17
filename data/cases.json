@@ -71,7 +71,7 @@
     "treatment_pic2": "init_pic/gz01_treat2.png",
     "treatment_pic3": "init_pic/gz01_treat3.png",
     "symptom_video": "init_video/gz_symptom.mp4",
-    "diagnosis_video": "init_video/.mp4",
+    "diagnosis_video": "init_video/gz01_diagnosis.mp4",
     "treatment_video": "init_video/gz01_treat.mp4"
   },
   {

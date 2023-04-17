@@ -57,7 +57,7 @@ class CaseView(APIView):
         return json_response_false("Fail to modify this case.")
 
     def delete(self, request):
-        # delete one case based on case_number
+        # delete cases based on case_number list
         case_number_list = request.data.get('case_number_list', None)
         if case_number_list is None:
             return json_response_false("Empty case number list, please enter a proper one.")
@@ -98,12 +98,12 @@ class CheckView(APIView):
         return json_response_false("Fail to modify this checkup.")
 
     def delete(self, request):
-        # delete one checkup based on checkup_id
-        checkup_id = request.data.get("checkup_id", None)
-        if checkup_id is None:
-            return json_response_false("Empty checkup id, please enter a proper one.")
-        models.Checkup.objects.filter(id=checkup_id).delete()
-        msg = "Delete a checkup successfully."
+        # delete checkups based on checkup_id list
+        checkup_id_list = request.data.get("checkup_id_list", None)
+        if checkup_id_list is None:
+            return json_response_false("Empty checkup_id list, please check again.")
+        models.Checkup.objects.filter(id__in=checkup_id_list).delete()
+        msg = "Delete checkups successfully."
         return json_response_true(msg)
 
 
@@ -165,7 +165,9 @@ def get_cases_by_type(request, disease_type):
 def get_checkups_by_number(request, case_number):
     checkups = models.Checkup.objects.filter(case_number=case_number)
     if not checkups.exists():
-        return json_response_false("No checkup with this case number!")
+        return json_response_true("No checkup with this case number.", {
+            "checkups": []
+        })
     msg = "Find checkups with this case number successfully!"
     serializer = serializers.CheckupSerializer(checkups, many=True)
     util.process_urls(serializer.data)
