@@ -21,11 +21,11 @@ infectious:
     score: 5
   - description: 犬冠状病毒病的预防措施包括以下哪些？
     optionA: 定期接种疫苗
-    optionB: 避免宠物接触野生动物
+    optionB: 给宠物食用生肉
     optionC: 定期体检
-    optionD: 给宠物食用生肉
+    optionD: 避免宠物接触野生动物
     answerA: True
-    answerB: True
+    answerB: False
     answerC: True
-    answerD: False
+    answerD: True
     score: 5
