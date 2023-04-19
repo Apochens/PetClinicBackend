@@ -59,6 +59,11 @@ class RoleAPIView(APIView):
 @api_view(['GET'])
 def get_role_by_id(request, role_id):
 
+    def map_process_with_absolute_path(process):
+        for step in process:
+            step['picture'] = "127.0.0.1:8000/media/init_pic/jobs/" + step['picture']
+        return process
+
     role: models.Role = models.Role.objects.get(id=role_id)
     workflows = models.Workflow.objects.filter(name__in=role.jobs.split(';'))
 
@@ -67,6 +72,6 @@ def get_role_by_id(request, role_id):
         'description': role.description,
         'jobs': [{
             "name": workflow.name,
-            "process": workflow.process,
+            "process": map_process_with_absolute_path(workflow.process),
         } for workflow in workflows],
     })
