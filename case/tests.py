@@ -5,28 +5,23 @@ from django.contrib.auth.models import User
 
 # Create your tests here.
 
-class CaseTest(TestCase):
+class UserTest(TestCase):
     def setUp(self):
-        self.base_url = "http://127.0.0.1:8000/"
+        self.base_auth_url = "http://127.0.0.1:8000/authentication/"
 
-    def test_create_user(self):
+    def test_get_users(self):
         data1 = {
-            'username': 'test',
-            'password': 'test111',
-            'superuser': False
+            'username': 'root',
+            'password': '123456'
         }
-        requests.post(url=self.base_url + '/authentication/user/register',
-                      data=data1)
-        data2 = {
-            'username': 'test',
-            'password': 'test111'
-        }
-        token = requests.post(url=self.base_url + 'authentication/token/',
-                              data=data2)
+        token = requests.post(url=self.base_auth_url + 'token/', data=data1)
         headers = {
-            'Authorization': token.json().get("access")
+            'Authorization': 'Token ' + token.json().get('access')
         }
-        r = requests.get(url=self.base_url + 'authentication/user/',
-                         headers=headers)
+        r = requests.get(url=self.base_auth_url + 'user/', headers=headers)
         result = r.json()
         self.assertEqual(result.get("message"), "Fetch all users successfully")
+
+
+class FunctionTest(TestCase):
+    pass
