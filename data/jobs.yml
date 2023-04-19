@@ -1,106 +1,154 @@
 皮下注射:
   - name: 洗手
     description: 在进行任何类型的注射之前，您必须先用肥皂和温水洗手。这可以帮助减少感染的风险。
+    picture: wash_1.png
   - name: 准备注射液
     description: 将注射液从瓶子或安瓿中抽取出来。根据医生或药品说明书的指示使用正确的剂量和注射器。
+    picture: liquid_1.png
   - name: 选择注射部位
     description: 常见的皮下注射部位包括腹部、上臂、大腿和臀部。选择一个区域并在这个区域上找到一个合适的注射点。
+    picture: choose_1.png
   - name: 清洁注射部位
     description: 用含有酒精的棉球擦拭注射部位。从注射点向外圆形擦拭，这可以帮助减少感染的风险。
+    picture: clean_1.png
   - name: 准备注射器
     description: 将注射器中的空气推出，直到注射器中只剩下药液。这可以确保您注射正确的剂量。
+    picture: prepare_1.png
   - name: 插入针头
     description: 将针头插入皮下脂肪组织中，通常为与地面垂直的角度，直至穿透皮肤。如果您需要注射深度，建议您咨询医生。
+    picture: choose_1.png
   - name: 注射药液
     description: 缓慢注射药液，直至注射器中的所有液体注入皮下组织中。如果您发现注射疼痛或感到不适，请停止注射并向医生咨询。
+    picture: inject_1.png
   - name: 取出针头
     description: 将针头从注射点中取出，然后用干净的棉球轻轻按压注射点。这可以帮助减少局部刺痛和出血的风险。
+    picture: takeout_1.png
   - name: 处理废弃物
     description: 将注射器和针头放入废弃物容器中，以减少感染的风险。
+    picture: rubbish_1.png
 静脉注射:
   - name: 洗手
     description: 在进行任何类型的注射之前，您必须先用肥皂和温水洗手。这可以帮助减少感染的风险。
+    picture: wash_1.png
   - name: 准备注射液
     description: 将注射液从瓶子或安瓿中抽取出来。根据医生或药品说明书的指示使用正确的剂量和注射器。
+    picture: liquid_1.png
   - name: 选择注射部位
     description: 常见的皮下注射部位包括腹部、上臂、大腿和臀部。选择一个区域并在这个区域上找到一个合适的注射点。
+    picture: clean_1.png
   - name: 清洁注射部位
     description: 用含有酒精的棉球擦拭注射部位。从注射点向外圆形擦拭，这可以帮助减少感染的风险。
+    picture: choose_1.png
   - name: 准备注射器
     description: 将注射器中的空气推出，直到注射器中只剩下药液。这可以确保您注射正确的剂量。
+    picture: liquid_1.png
   - name: 固定静脉
     description: 将患者的手臂或手背固定在一个舒适的位置上，以便进行注射。
+    picture: guding_1.png
   - name: 寻找静脉
     description: 使用一只手指轻轻按压注射部位，帮助找到适合注射的静脉。
+    picture: xunzhao_1.png
   - name: 插入针头
     description: 将针头缓慢插入静脉，插入时应保持针头与静脉平行，并避免抖动。
+    picture: choose_1.png
   - name: 注射药液
     description: 根据医嘱缓慢注射药物，注射时应保持手稳定，避免抖动。
+    picture: inject_1.png
   - name: 取出针头
     description: 将针头从注射点中取出，然后用干净的棉球轻轻按压注射点。这可以帮助减少局部刺痛和出血的风险。
+    picture: takeout_1.png
   - name: 处理废弃物
     description: 将注射器和针头放入废弃物容器中，以减少感染的风险。
+    picture: rubbish_1.png
 肌肉注射:
   - name: 洗手
     description: 在进行任何类型的注射之前，您必须先用肥皂和温水洗手。这可以帮助减少感染的风险。
+    picture: wash_1.png
   - name: 准备注射液
     description: 将注射液从瓶子或安瓿中抽取出来。根据医生或药品说明书的指示使用正确的剂量和注射器。
+    picture: liquid_1.png
   - name: 选择注射部位
     description: 常见的肌肉注射部位包括腹部、上臂、大腿和臀部。选择一个区域并在这个区域上找到一个合适的注射点。
+    picture: choose_1.png
   - name: 清洁注射部位
     description: 用含有酒精的棉球擦拭注射部位。从注射点向外圆形擦拭，这可以帮助减少感染的风险。
+    picture: clean_1.png
   - name: 准备注射器
     description: 将注射器中的空气推出，直到注射器中只剩下药液。这可以确保您注射正确的剂量。
+    picture: prepare_1.png
   - name: 插入针头
     description: 将针头缓慢插入静脉，插入时应保持针头与静脉平行，并避免抖动。
+    picture: choose_1.png
   - name: 注射药液
     description: 注射过程中，应该尽量放松注射部位和注射的肌肉，以减少疼痛和不适感。
+    picture: inject_1.png
   - name: 取出针头
     description: 将针头从注射点中取出，然后用干净的棉球轻轻按压注射点。这可以帮助减少局部刺痛和出血的风险。
+    picture: takeout_1.png
   - name: 处理废弃物
     description: 将注射器和针头放入废弃物容器中，以减少感染的风险。
+    picture: rubbish_1.png
 局部封闭注射:
   - name: 洗手
     description: 在进行任何类型的注射之前，您必须先用肥皂和温水洗手。这可以帮助减少感染的风险。
+    picture: wash_1.png
   - name: 准备注射液
     description: 将注射液从瓶子或安瓿中抽取出来。根据医生或药品说明书的指示使用正确的剂量和注射器。
+    picture: choose_1.png
   - name: 选择注射部位
     description: 常见的肌肉注射部位包括腹部、上臂、大腿和臀部。选择一个区域并在这个区域上找到一个合适的注射点。
+    picture: inject_1.png
   - name: 清洁注射部位
     description: 用含有酒精的棉球擦拭注射部位。从注射点向外圆形擦拭，这可以帮助减少感染的风险。
+    picture: clean_1.png
   - name: 准备注射器
     description: 将注射器中的空气推出，直到注射器中只剩下药液。这可以确保您注射正确的剂量。
+    picture: prepare_1.png
   - name: 插入针头
     description: 将针头缓慢插入静脉，插入时应保持针头与静脉平行，并避免抖动。
+    picture: inject_1.png
   - name: 注射药液
     description: 注射过程中，应该尽量放松注射部位和注射的肌肉，以减少疼痛和不适感。
+    picture: choose_1.png
   - name: 取出针头
     description: 将针头从注射点中取出，然后用干净的棉球轻轻按压注射点。这可以帮助减少局部刺痛和出血的风险。
+    picture: takeout_1.png
   - name: 处理废弃物
     description: 将注射器和针头放入废弃物容器中，以减少感染的风险。
+    picture: rubbish_1.png
 
 注射麻醉:
   - name: 麻醉前评估
     description: 安全有效的麻醉依赖于麻醉前的动物评估和准备。完善的麻醉前评估可帮助兽医发现潜在的健康问题，了解动物状态。
+    picture: before_1.png
   - name: 麻醉前用药
-    description:
+    description: 麻醉前给药主要目的在于减轻动物的恐惧和不安，减少唾液分泌和支气管分泌物，保障动物通气通畅，减少胃肠蠕动，防止呕吐，同时能减少诱导麻醉剂与吸入麻醉剂的用量，降低潜在危险性，减少疼痛等。
+    picture: mazui_1.png
   - name: 麻醉诱导
-    description:
+    description: 麻醉诱导是指在药物的作用下，机体的全身或局部的感觉可逆性的抑制，以达到可进行手术状态的过程。在动物失去知觉后，就可进行气管插管来给予氧气和吸入麻醉药。另外，也可以通过面罩给予吸入麻醉药进行诱导，针对异宠，还可通过诱导盒进行诱导。
+    picture: mazui2_1.png
   - name: 麻醉维持
-    description:
+    description: 对于15min-1h的中程手术，采用吸入麻醉来维持可能是最方便最可控的。对于超过1小时的长时间手术，首选吸入麻醉，动物从七氟烷和异氟烷麻醉中苏醒的速度相对更快，即便是生病和虚弱的患者。在此阶段兽医师需持续监控动物的生命体征，包括心率和心律，呼吸频率，组织氧合作用和体温。
+    picture: mazui3_1.png
   - name: 麻醉苏醒
-    description:
+    description: 手术进程接近结束时，兽医调低麻醉给药至停止麻醉，动物逐渐恢复意识，直到唤醒。动物苏醒后应该有稳定的自主呼吸，不需要额外的呼吸支持且循环平稳，同时术后疼痛得到良好地控制。实际上，对动物而言，苏醒时间个体差异较大。根据一般经验认为，吸入式麻醉苏醒时间通常为 10~15min，注射麻醉苏醒时间通常为30~90min。如超过此时限，可视为苏醒延迟。动物疾病、药物使用、麻醉管理失当等均易导致苏醒延迟，而手术种类、手术时间等许多因素也都对苏醒时间长短有一定的影响。
+    picture: mazui4_1.png
 吸入麻醉:
   - name: 麻醉前评估
     description: 安全有效的麻醉依赖于麻醉前的动物评估和准备。完善的麻醉前评估可帮助兽医发现潜在的健康问题，了解动物状态。
+    picture: before_1.png
   - name: 麻醉前用药
     description: 麻醉前给药主要目的在于减轻动物的恐惧和不安，减少唾液分泌和支气管分泌物，保障动物通气通畅，减少胃肠蠕动，防止呕吐，同时能减少诱导麻醉剂与吸入麻醉剂的用量，降低潜在危险性，减少疼痛等。
+    picture: mazui_1.png
   - name: 麻醉诱导
     description: 麻醉诱导是指在药物的作用下，机体的全身或局部的感觉可逆性的抑制，以达到可进行手术状态的过程。在动物失去知觉后，就可进行气管插管来给予氧气和吸入麻醉药。另外，也可以通过面罩给予吸入麻醉药进行诱导，针对异宠，还可通过诱导盒进行诱导。
+    picture: mazui2_1.png
   - name: 麻醉维持
     description: 对于15min-1h的中程手术，采用吸入麻醉来维持可能是最方便最可控的。对于超过1小时的长时间手术，首选吸入麻醉，动物从七氟烷和异氟烷麻醉中苏醒的速度相对更快，即便是生病和虚弱的患者。在此阶段兽医师需持续监控动物的生命体征，包括心率和心律，呼吸频率，组织氧合作用和体温。
+    picture: mazui3_1.png
   - name: 麻醉苏醒
     description: 手术进程接近结束时，兽医调低麻醉给药至停止麻醉，动物逐渐恢复意识，直到唤醒。动物苏醒后应该有稳定的自主呼吸，不需要额外的呼吸支持且循环平稳，同时术后疼痛得到良好地控制。实际上，对动物而言，苏醒时间个体差异较大。根据一般经验认为，吸入式麻醉苏醒时间通常为 10~15min，注射麻醉苏醒时间通常为30~90min。如超过此时限，可视为苏醒延迟。动物疾病、药物使用、麻醉管理失当等均易导致苏醒延迟，而手术种类、手术时间等许多因素也都对苏醒时间长短有一定的影响。
+    picture: mazui4_1.png
 
 保定:
   - name: 梳理毛发
