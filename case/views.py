@@ -50,11 +50,13 @@ class CaseView(APIView):
     def put(self, request):
         # modify one case
         old_case = models.Case.objects.filter(case_number=request.data.get("case_number", "")).first()
-        upd = serializers.CaseSerializer(data=request.data, instance=old_case)
-        if upd.is_valid():
-            upd.save()
-            return json_response_true("Successfully modified this case.")
-        return json_response_false("Fail to modify this case.")
+        old_case.delete()
+        serializer = serializers.CaseSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+        else:
+            return json_response_false("Fail to modify a case.")
+        return json_response_true("Modify a case successfully.")
 
     def delete(self, request):
         # delete cases based on case_number list
@@ -91,11 +93,13 @@ class CheckView(APIView):
     def put(self, request):
         # modify one checkup
         old_checkup = models.Checkup.objects.filter(id=request.data.get("checkup_id", None)).first()
-        upd = serializers.CheckupSerializer(data=request.data, instance=old_checkup)
-        if upd.is_valid():
-            upd.save()
-            return json_response_true("Successfully modified this checkup.")
-        return json_response_false("Fail to modify this checkup.")
+        old_checkup.delete()
+        serializer = serializers.CheckupSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+        else:
+            return json_response_false("Fail to modify a checkup.")
+        return json_response_true("Modify a checkup successfully.")
 
     def delete(self, request):
         # delete checkups based on checkup_id list
