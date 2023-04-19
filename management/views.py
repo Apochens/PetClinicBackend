@@ -79,12 +79,9 @@ class DepartmentAPIView(APIView):
             id = data["id"]
             assert id is not None
             res = Department.objects.get(id=id)
-            if data["name"]:
-                res.name = data["name"]
-            if data["description"]:
-                res.description = data["description"]
-            if data["manager"]:
-                res.manager = data["manager"]
+            res.name = data["name"]
+            res.description = data["description"]
+            res.manager = data["manager"]
             res.save()
             serializer = serializers.DepartmentSerializer(res, many=False)
             return json_response_true("update department successfully", {
@@ -162,16 +159,11 @@ class MedicineAPIView(APIView):
             id = data["id"]
             assert id is not None
             res = Medicine.objects.get(id=id)
-            if data["name"]:
-                res.name = data["name"]
-            if data["type"]:
-                res.type = data["type"]
-            if data["tag"]:
-                res.tag = data["tag"]
-            if data["price"]:
-                res.price = data["price"]
-            if data["description"]:
-                res.description = data["description"]
+            res.name = data["name"]
+            res.type = data["type"]
+            res.tag = data["tag"]
+            res.price = data["price"]
+            res.description = data["description"]
             res.save()
             serializer = serializers.MedicineSerializer(res, many=False)
             return json_response_true("update medicine successfully", {
@@ -249,14 +241,10 @@ class InstrumentationAPIView(APIView):
             id = data["id"]
             assert id is not None
             res = Instrumentation.objects.get(id=id)
-            if data["name"]:
-                res.name = data["name"]
-            if data["dept_id"]:
-                res.dept_id = Department.objects.get(id=data["dept_id"])
-            if data["description"]:
-                res.description = data["description"]
-            if data["method"]:
-                res.method = data["method"]
+            res.name = data["name"]
+            res.dept_id = Department.objects.get(id=data["dept_id"])
+            res.description = data["description"]
+            res.method = data["method"]
             res.save()
             serializer = serializers.InstrumentationSerializer(res, many=False)
             return json_response_true("update instrumentation successfully", {
@@ -334,14 +322,10 @@ class CheckupAPIView(APIView):
             id = data["id"]
             assert id is not None
             res = Checkup.objects.get(id=id)
-            if data["name"]:
-                res.name = data["name"]
-            if data["dept_id"]:
-                res.dept_id = Department.objects.get(id=data["dept_id"])
-            if data["price"]:
-                res.price = data["price"]
-            if data["description"]:
-                res.description = data["description"]
+            res.name = data["name"]
+            res.dept_id = Department.objects.get(id=data["dept_id"])
+            res.price = data["price"]
+            res.description = data["description"]
             res.save()
             serializer = serializers.CheckupSerializer(res, many=False)
             return json_response_true("update checkup successfully", {
@@ -419,15 +403,10 @@ class HospitalizationAPIView(APIView):
             id = data["id"]
             assert id is not None
             res = Hospitalization.objects.get(id=id)
-            if data["case_id"]:
-                res.case_id = data["case_id"]
-                # assert Case.objects.get(id=d.case_id) is not None
-            if data["price"]:
-                res.price = data["price"]
-            if data["bg_time"]:
-                res.bg_time = datetime.strptime(data["bg_time"], '%Y-%m-%d')
-            if data["ed_time"]:
-                res.ed_time = datetime.strptime(data["ed_time"], '%Y-%m-%d')
+            res.case_id = data["case_id"]
+            res.price = data["price"]
+            res.bg_time = datetime.strptime(data["bg_time"], '%Y-%m-%d')
+            res.ed_time = datetime.strptime(data["ed_time"], '%Y-%m-%d')
             assert res.ed_time >= res.bg_time
             res.save()
             serializer = serializers.HospitalizationSerializer(res, many=False)
