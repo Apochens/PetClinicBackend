@@ -29,7 +29,8 @@ def role_init(request):
         workflows = load(Path('./data/jobs.yml').open('r', encoding='utf-8'), Loader=FullLoader)
         return [{
             'name': workflow,
-            'process': workflows[workflow],
+            'video': workflows[workflow]['video'],
+            'process': workflows[workflow]['process'],
         } for workflow in workflows]
 
     sers = [
@@ -59,9 +60,11 @@ class RoleAPIView(APIView):
 @api_view(['GET'])
 def get_role_by_id(request, role_id):
 
+    static_path = '127.0.0.1:8000/media/'
+
     def map_process_with_absolute_path(process):
         for step in process:
-            step['picture'] = "127.0.0.1:8000/media/init_pic/jobs/" + step['picture']
+            step['picture'] = static_path + "init_pic/jobs/" + step['picture']
         return process
 
     role: models.Role = models.Role.objects.get(id=role_id)
@@ -72,6 +75,7 @@ def get_role_by_id(request, role_id):
         'description': role.description,
         'jobs': [{
             "name": workflow.name,
+            "video": static_path + "init_video/jobs/" + workflow.video,
             "process": map_process_with_absolute_path(workflow.process),
         } for workflow in workflows],
     })
