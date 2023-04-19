@@ -153,40 +153,57 @@
 保定:
   - name: 梳理毛发
     description: 用合适的梳子和刷子仔细梳理宠物的毛发，将打结的地方解开，防止毛发缠绕、打结。
+    picture: baoding1_2.jpeg
   - name: 洗澡
     description: 用专业的宠物沐浴用品，按照说明进行洗澡。注意水温不要过高，以及避免让水进入宠物的眼睛、鼻子和耳朵。
+    picture: baoding2_2.jpeg
   - name: 吹干
     description: 将宠物的毛发吹干，用吹风机时要注意风力和温度，以避免伤害宠物的皮肤。
+    picture: baoding3_2.jpeg
   - name: 修剪毛发
     description: 根据需要，可以使用剃毛器、剪刀等工具修剪宠物的毛发。剪毛时要注意安全，避免伤到宠物的皮肤。
+    picture: baoding4_2.jpeg
   - name: 修剪指甲
     description: 用专业的宠物指甲刀修剪宠物的指甲，避免剪伤指甲床。
+    picture: baoding5_2.jpeg
   - name: 清洁牙齿和耳朵
     description: 使用专业的牙刷和耳朵清洁剂清洁宠物的牙齿和耳朵。清洁牙齿可以预防口臭和牙结石，清洁耳朵可以预防感染和炎症。
+    picture: baoding6_2.jpeg
 剃毛:
   - name: 准备必要的工具
     description: 剪刀，电动剃毛器，梳子，毛巾，清洁剂和剃毛用品。确保这些工具都干净，锋利并且安全。
+    picture: timao1_2.jpeg
   - name: 给宠物洗澡并擦干
     description: 在剃毛之前，先给宠物洗澡并彻底擦干，这可以帮助剃毛器更容易地切割和移除毛发。
+    picture: timao2_2.jpeg
   - name: 仔细梳理宠物毛发
     description: 使用梳子和刷子仔细梳理宠物的毛发，以确保没有打结和缠结的部分，这可以帮助剃毛器更好地切割和剃毛。
+    picture: timao3_2.jpeg
   - name: 开始剃毛
     description: 在使用电动剃毛器之前，将其调至合适的长度并确保刀头清洁。然后从宠物身体的一侧开始剃毛，沿着毛发生长方向轻轻剃毛。要确保剃毛器的头部与宠物的皮肤保持平行，并避免使用过多的压力。当剃毛器变热时，请给它休息时间。剃完一侧后，移动到另一侧并重复同样的步骤。确保在剃毛时注意到难以到达的部位，例如腹部和腿上方。
+    picture: timao4_2.jpeg
   - name: 毛发清理
     description: 用梳子和毛巾将宠物身上的杂毛和剃毛器留下的残余毛发梳理干净，然后用清洁剂清洗剃毛器和其他工具。
+    picture: timao5_2.jpeg
 消毒:
   - name: 确认消毒物质
     description: 在给宠物进行消毒前，确认使用的消毒剂是适合宠物的，并符合兽医或专业人员的建议。
+    picture: xiaodu1_2.jpeg
   - name: 准备消毒剂
     description: 按照使用说明准备消毒剂，并根据需要将其放入喷雾器或其他容器中。
+    picture: xiaodu2_2.jpeg
   - name: 清洁宠物
     description: 在消毒前，将宠物的皮毛和体表清洁干净，以去除可能存在的灰尘、污垢和其他杂物。请注意，应使用特定的宠物洗涤剂和沐浴露。
+    picture: xiaodu3_2.jpeg
   - name: 执行消毒
     description: 将消毒剂喷洒在宠物身上，并确保其遍布整个身体表面，包括脚垫和爪子之间。请确保避开宠物的眼睛、鼻子和口腔等敏感部位。
+    picture: xiaodu4_2.jpeg
   - name: 清洗消毒剂
     description: 在消毒剂在宠物身上停留一段时间后，根据消毒剂的使用说明，使用湿布或清水对宠物进行清洗，以去除剩余的消毒剂。
+    picture: xiaodu5_2.jpeg
   - name: 监测宠物
     description: 在消毒过程中，请密切监测宠物的反应和呼吸情况，如果发现异常，请立即停止消毒并咨询兽医。
+    picture: xiaodu6_2.jpeg
 
 #接待挂号:
 导医咨询:
