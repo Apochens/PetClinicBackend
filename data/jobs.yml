@@ -192,18 +192,26 @@
 导医咨询:
   - name: 问询
     description: 当宠物主人到达宠物医院时，前台工作人员会问询宠物情况，了解宠物的症状、疾病史和其他相关信息。
+    picture: query_3.jpg
   - name: 安排预约
     description: 根据宠物的情况和需要，为宠物安排预约，包括兽医检查、诊断和治疗等服务。
+    picture: arrangement_3.jpg
   - name: 提供信息
     description: 向宠物主任提供有关宠物健康和护理的信息，如疫苗接种、寄生虫预防、营养饮食等方面的建议。
+    picture: info-offering_3.jpg
   - name: 解答疑问
     description: 如果宠物主任有任何疑问或担忧，需要耐心解答，并向其提供有关宠物健康和护理方面的建议和建议。
+    picture: problem-solving_3.jpg
   - name: 提供资料
     description: 如果宠物主任需要更多的宠物健康和护理方面的资料和资讯，可以向其提供相关的资料和书籍等。
+    picture: info-offering_3.jpg
 收费:
   - name: 选择治疗方案、药品
     description: 根据兽医师处方内容录入宠物的治疗方案信息和药品信息
+    picture: plan-choosing_3.jpg
   - name: 计算费用
     description: 根据选择的治疗方案和医生处方中的药品进行费用计算
+    picture: fee-computing_3.jpg
   - name: 收取费用
     description: 通过现金支付或数字支付的方式来收宠物取治疗费用
+    picture: charging_3.jpg
