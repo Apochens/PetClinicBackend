@@ -2,7 +2,7 @@ from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 
 from PetClinicBackend import settings
-from PetClinicBackend.utils import json_response_false, json_response_true
+from PetClinicBackend.utils import json_response_false, json_response_true, json_response_unaccepted
 from . import models, serializers, util
 
 
@@ -37,7 +37,7 @@ class CaseView(APIView):
         case_number = request.data.get('case_number', None)
         check_case = models.Case.objects.filter(case_number=case_number.strip())
         if len(check_case) != 0:
-            return json_response_false("Case number already used, change to another one and try again.")
+            return json_response_unaccepted("Case number already used, change to another one and try again.")
 
         try:
             serializer.is_valid(raise_exception=True)
