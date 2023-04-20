@@ -46,7 +46,8 @@ def status(request, username):
     user = User.objects.get(username=username)
 
     return json_response_true("Get user status successfully!", {
-        'superuser': user.is_superuser
+        'superuser': user.is_superuser,
+        'id': user.id,
     })
 
 
