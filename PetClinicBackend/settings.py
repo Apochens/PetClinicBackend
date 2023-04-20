@@ -71,6 +71,10 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+    "http://127.0.0.1:60784",
+    "http://127.0.0.1:60785",
+    "http://127.0.0.1:60786",
+    "http://**"
 ]
 CORS_ALLOW_METHODS = [
     "DELETE",
@@ -96,8 +100,7 @@ ROOT_URLCONF = 'PetClinicBackend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
