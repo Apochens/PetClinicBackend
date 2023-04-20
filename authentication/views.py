@@ -100,7 +100,9 @@ class UserView(APIView):
         user = User.objects.get(username=username)
 
         password = request.data.get('password', None)
-        if password is not None and password != '':
+        if password is not None:
+            if password == '':
+                return json_response_false("The password cannot be empty")
             user.set_password(password)
 
         superuser = request.data.get('superuser', None)
