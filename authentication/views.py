@@ -103,7 +103,7 @@ class UserView(APIView):
             user.set_password(password)
 
         superuser = request.data.get('superuser', None)
-        if superuser:
+        if superuser is not None:
             user.is_superuser = 1 if superuser else 0
             user.is_staff = 1 if superuser else 0
 
