@@ -46,7 +46,8 @@ def status(request, username):
     user = User.objects.get(username=username)
 
     return json_response_true("Get user status successfully!", {
-        'superuser': user.is_superuser
+        'superuser': user.is_superuser,
+        'id': user.id,
     })
 
 
@@ -100,10 +101,12 @@ class UserView(APIView):
 
         password = request.data.get('password', None)
         if password is not None:
+            if password == '':
+                return json_response_false("The password cannot be empty")
             user.set_password(password)
 
         superuser = request.data.get('superuser', None)
-        if superuser:
+        if superuser is not None:
             user.is_superuser = 1 if superuser else 0
             user.is_staff = 1 if superuser else 0
 

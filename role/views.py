@@ -60,7 +60,7 @@ class RoleAPIView(APIView):
 @api_view(['GET'])
 def get_role_by_id(request, role_id):
 
-    static_path = '127.0.0.1:8000/media/'
+    static_path = 'http://127.0.0.1:8000/media/'
 
     def map_process_with_absolute_path(process):
         for step in process:
