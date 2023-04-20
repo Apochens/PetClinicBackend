@@ -100,7 +100,7 @@ class UserView(APIView):
         user = User.objects.get(username=username)
 
         password = request.data.get('password', None)
-        if password is not None:
+        if password is not None and password != '':
             user.set_password(password)
 
         superuser = request.data.get('superuser', None)
