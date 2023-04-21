@@ -14,6 +14,8 @@ def authentication_init(request):
     User.objects.create_user('user2', 'user2@123.com', 'user2')
     User.objects.create_user('user3', 'user3@123.com', 'user3')
 
+    return json_response_true("Init users successfully!")
+
 
 @require_http_methods(['POST'])
 def register(request):
