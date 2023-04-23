@@ -71,10 +71,12 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+    "http://localhost:60784",
     "http://127.0.0.1:60784",
+    "http://localhost:60785",
     "http://127.0.0.1:60785",
-    "http://127.0.0.1:60786",
-    "http://**"
+    "http://localhost:60786",
+    "http://127.0.0.1:60786"
 ]
 CORS_ALLOW_METHODS = [
     "DELETE",
